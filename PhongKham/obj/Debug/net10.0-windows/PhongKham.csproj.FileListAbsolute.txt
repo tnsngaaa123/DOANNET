@@ -1,0 +1,5 @@
+D:\DOANNET\PhongKham\obj\Debug\net10.0-windows\PhongKham.GeneratedMSBuildEditorConfig.editorconfig
+D:\DOANNET\PhongKham\obj\Debug\net10.0-windows\PhongKham.AssemblyInfoInputs.cache
+D:\DOANNET\PhongKham\obj\Debug\net10.0-windows\PhongKham.AssemblyInfo.cs
+D:\DOANNET\PhongKham\obj\Debug\net10.0-windows\PhongKham.csproj.CoreCompileInputs.cache
+D:\DOANNET\PhongKham\obj\Debug\net10.0-windows\PhongKham.sourcelink.json

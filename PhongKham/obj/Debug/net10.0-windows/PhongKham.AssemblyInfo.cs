@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("DOANNET")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("PhongKham")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("DOANNET")]
-[assembly: System.Reflection.AssemblyTitleAttribute("DOANNET")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a5d75e8e45b076cb0d9ccb155a3660f420da65b")]
+[assembly: System.Reflection.AssemblyProductAttribute("PhongKham")]
+[assembly: System.Reflection.AssemblyTitleAttribute("PhongKham")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]

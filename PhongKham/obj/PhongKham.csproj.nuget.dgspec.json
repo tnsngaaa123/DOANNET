@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DOANNET\\DOANNET\\DOANNET.csproj": {}
+    "D:\\DOANNET\\PhongKham\\PhongKham.csproj": {}
   },
   "projects": {
-    "D:\\DOANNET\\DOANNET\\DOANNET.csproj": {
+    "D:\\DOANNET\\PhongKham\\PhongKham.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DOANNET\\DOANNET\\DOANNET.csproj",
-        "projectName": "DOANNET",
-        "projectPath": "D:\\DOANNET\\DOANNET\\DOANNET.csproj",
+        "projectUniqueName": "D:\\DOANNET\\PhongKham\\PhongKham.csproj",
+        "projectName": "PhongKham",
+        "projectPath": "D:\\DOANNET\\PhongKham\\PhongKham.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\DOANNET\\DOANNET\\obj\\",
+        "outputPath": "D:\\DOANNET\\PhongKham\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -64,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.403/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
