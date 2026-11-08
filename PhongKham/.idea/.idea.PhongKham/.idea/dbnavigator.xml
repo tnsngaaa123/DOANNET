@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DBNavigator.Project.DDLFileAttachmentManager">
-    <mappings />
-    <preferences />
-  </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants />
     <selection-state>
@@ -20,12 +16,7 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.Settings">
-    <states>
-      <state category="SECRET_STORAGE_MIGRATION">
-        <cleaned value="true" />
-        <migrated value="true" />
-      </state>
-    </states>
+    <states />
     <connections />
     <browser-settings>
       <general>
