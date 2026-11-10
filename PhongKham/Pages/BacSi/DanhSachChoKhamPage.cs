@@ -1,5 +1,3 @@
-
-
 using System.Data;
 using PhongKham.Base;
 using PhongKham.Core;
@@ -15,7 +13,17 @@ public sealed class DanhSachChoKhamPage : BasePage
     private DataGridView _grid=null!;
     protected override void BuildUI()
     {
-        Content.Controls.Add(new Label { Text="Danh sách chờ khám",Dock=DockStyle.Top,Height=90,Font=Theme.TitleFont });
+        _grid=Ui.Grid(("c0","STT"),("c1","Tên bệnh nhân"),("c2","Ngày sinh"),("c3","Ưu tiên"));
+        _table.Columns.Add("id",typeof(int));
+        _table.Columns.Add("c0");
+        _table.Columns.Add("c1");
+        _table.Columns.Add("c2");
+        _table.Columns.Add("c3");
+        _table.Rows.Add(1,"1","Bệnh nhân minh họa 1","01/01/1995","Không");
+        _table.Rows.Add(2,"2","Bệnh nhân minh họa 2","02/02/1990","Có");
+        ((AppGrid)_grid).BindRows(_table.DefaultView);
+        Ui.Button(Toolbar,"Khám bệnh nhân tiếp theo",()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");},AppButtonStyle.Primary);
+        Content.Controls.Add(_grid);
     }
     private void Find()
     {
