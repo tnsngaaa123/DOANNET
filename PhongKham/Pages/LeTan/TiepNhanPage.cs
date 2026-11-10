@@ -1,4 +1,4 @@
-namespace PhongKham.Pages.LeTan;
+
 
 using System.Data;
 using PhongKham.Base;

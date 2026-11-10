@@ -1,4 +1,4 @@
-namespace PhongKham.Pages.Chung.Dialogs;
+
 
 using PhongKham.Base;
 using PhongKham.Core;

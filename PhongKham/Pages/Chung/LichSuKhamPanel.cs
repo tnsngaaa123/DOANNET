@@ -1,4 +1,3 @@
-namespace PhongKham.Pages.Chung;
 
 using PhongKham.Controls;
 namespace PhongKham.Pages.Chung;

@@ -1,4 +1,4 @@
-namespace PhongKham.Pages.BacSi;
+
 
 using System.Data;
 using PhongKham.Base;
