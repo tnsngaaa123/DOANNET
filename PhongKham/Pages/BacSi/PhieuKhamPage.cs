@@ -1,5 +1,3 @@
-
-
 using PhongKham.Base;
 using PhongKham.Core;
 using PhongKham.Controls;
@@ -10,6 +8,15 @@ public sealed class PhieuKhamPage : BasePage
 {
     protected override void BuildUI()
     {
-        Content.Controls.Add(new Label { Text="Phiếu khám",Dock=DockStyle.Top,Height=100,Font=Theme.TitleFont });
+        var form=Ui.Form();
+        Ui.Field(form,"Bệnh nhân",Ui.Text(true));
+        Ui.Field(form,"Triệu chứng *",Ui.Text(true));
+        Ui.Field(form,"Chẩn đoán *",Ui.Text(true));
+        Ui.Field(form,"Kết quả khám",Ui.Text(true));
+        Ui.Field(form,"Lời dặn",Ui.Text(true));
+        Content.Controls.Add(Ui.Scroll(form));Footer.Visible=true;Footer.FlowDirection=FlowDirection.RightToLeft;
+        Ui.Button(Toolbar,"Lịch sử khám trước đây",()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Button(Toolbar,"Xem đơn thuốc đang kê",()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Button(Footer,"Hoàn tất khám",()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");},AppButtonStyle.Primary);
     }
 }
