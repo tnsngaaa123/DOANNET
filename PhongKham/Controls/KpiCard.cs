@@ -16,6 +16,9 @@ public sealed class KpiCard : CardPanel
         Font = new Font("Segoe UI", 24, FontStyle.Bold),
         ForeColor = Theme.Primary
     };
+    [System.ComponentModel.DefaultValue("")]
+    public string Caption { get => _caption.Text; set => _caption.Text = value; }
+    public KpiCard() : this("") { }
     public KpiCard(string caption = "")
     {
         Height = 112;

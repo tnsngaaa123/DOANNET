@@ -12,6 +12,7 @@ public enum AppButtonStyle
 
 public class AppButton : Button
 {
+    public AppButton() : this("", AppButtonStyle.Secondary) { }
     public AppButton(string text = "", AppButtonStyle style = AppButtonStyle.Secondary)
     {
         Text = text;
