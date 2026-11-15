@@ -1,10 +1,24 @@
 using PhongKham.Controls;
 namespace PhongKham.Pages.Chung;
-public sealed class LichSuKhamPanel : UserControl
+public sealed partial class LichSuKhamPanel : UserControl
 {
+    
+    public LichSuKhamPanel()
+    {
+        InitializeComponent();
+    }
     public LichSuKhamPanel(int patient)
     {
-        Dock=DockStyle.Fill;
-        Controls.Add(Ui.Grid(("c0","Ngày khám"),("c1","Triệu chứng"),("c2","Chẩn đoán"),("c3","Đơn thuốc")));
+
+        InitializeComponent();
+        if (!PhongKham.Core.DesignTimeSupport.IsDesignMode(this)) InitializeRuntime(patient);
     }
+    private void InitializeRuntime(int patient)
+    {
+        Ui.ConfigureGridFormatting(_layout1_DataGridView);
+
+    }
+
+
+    public void LoadPatient(int patient) { }
 }
