@@ -1,185 +1,52 @@
-#nullable disable
 using System.Data;
 using PhongKham.Base;
 using PhongKham.Core;
 using PhongKham.Controls;
 using PhongKham.Pages.Chung.Dialogs;
-
 namespace PhongKham.Pages.LeTan;
-public sealed partial class HangDoiPage
+[PageInfo(PageKeys.HoSoBenhNhan, "Hồ sơ bệnh nhân", PageGroups.TiepNhan, 30, Roles.LeTan, Roles.BacSi)]
+public sealed partial class HoSoBenhNhanPage : BasePage
 {
-    private System.ComponentModel.IContainer components;
-    private FlowLayoutPanel Toolbar;
-    private Panel Content;
-    private FlowLayoutPanel Footer;
-    private Label _pageTitle;
-    private TextBox _search;
-    private ComboBox _filter;
-    private DataGridView _grid;
-    private DataGridViewTextBoxColumn _layout1_Column;
-    private DataGridViewTextBoxColumn _layout2_Column;
-    private DataGridViewTextBoxColumn _layout3_Column;
-    private DataGridViewTextBoxColumn _layout4_Column;
-    private DataGridViewTextBoxColumn _layout5_Column;
-    private DataGridViewTextBoxColumn _layout6_Column;
-    private AppButton _layout7_Button;
-    private AppButton _layout8_Button;
-    private Panel _layout10_RowActionsHost;
-    protected override void Dispose(bool disposing)
+    private readonly DataTable _table=new();
+    
+    
+    
+    private void Find()
     {
-        if (disposing)
-            this.components?.Dispose();
-        base.Dispose(disposing);
+        var rows=_table.DefaultView.Cast<DataRowView>().Where(row=>row.Row.ItemArray.Any(value=>Convert.ToString(value)?.Contains(_search.Text,StringComparison.CurrentCultureIgnoreCase)==true));
+        
+        var filtered=_table.Clone();
+        foreach(var row in rows)filtered.ImportRow(row.Row);
+        ((AppGrid)_grid).BindRows(filtered.DefaultView);
+    }
+    public HoSoBenhNhanPage()
+    {
+        InitializeComponent();
+    }
+    protected override void BuildUI()
+    {
+        Ui.ConfigureGridFormatting(_grid);
+        _table.Columns.Add("id",typeof(int));
+        _table.Columns.Add("c0");
+        _table.Columns.Add("c1");
+        _table.Columns.Add("c2");
+        _table.Columns.Add("c3");
+        _table.Columns.Add("c4");
+        _table.Rows.Add(1,"HS001","Bệnh nhân minh họa 1","000000000001","01/01/1995","08/11/2026");
+        _table.Rows.Add(2,"HS002","Bệnh nhân minh họa 2","000000000002","02/02/1990","07/11/2026");
+        ((AppGrid)_grid).BindRows(_table.DefaultView);
+        _layout6_DateTimePicker.Format = DateTimePickerFormat.Short;
+        _layout9_list = new RowActionList<DataRowView>(_grid,r=>Convert.ToInt32(r["id"]),"👁",r=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        _layout10_RowActionsHost.Controls.Add(_layout9_list);
     }
 
-    private void InitializeComponent()
+    private void _layout7_Button_Click(object? sender, EventArgs e)
     {
-        this.components = new System.ComponentModel.Container();
-        this.Toolbar = new FlowLayoutPanel();
-        this.Content = new Panel();
-        this.Footer = new FlowLayoutPanel();
-        this._pageTitle = new Label();
-        this._search = new TextBox();
-        this._filter = new ComboBox();
-        this._grid = new AppGrid();
-        this._layout1_Column = new DataGridViewTextBoxColumn();
-        this._layout2_Column = new DataGridViewTextBoxColumn();
-        this._layout3_Column = new DataGridViewTextBoxColumn();
-        this._layout4_Column = new DataGridViewTextBoxColumn();
-        this._layout5_Column = new DataGridViewTextBoxColumn();
-        this._layout6_Column = new DataGridViewTextBoxColumn();
-        this._layout7_Button = new AppButton();
-        this._layout8_Button = new AppButton();
-        this._layout10_RowActionsHost = new Panel();
-        this.Toolbar.Name = "Toolbar";
-        this.Content.Name = "Content";
-        this.Footer.Name = "Footer";
-        this._pageTitle.Name = "_pageTitle";
-        this._search.Name = "_search";
-        this._filter.Name = "_filter";
-        this._grid.Name = "_grid";
-        this._layout7_Button.Name = "_layout7_Button";
-        this._layout8_Button.Name = "_layout8_Button";
-        this._layout10_RowActionsHost.Name = "_layout10_RowActionsHost";
-        ((System.ComponentModel.ISupportInitialize)this._grid).BeginInit();
-        this.Toolbar.SuspendLayout();
-        this.Content.SuspendLayout();
-        this.Footer.SuspendLayout();
-        this._layout10_RowActionsHost.SuspendLayout();
-        SuspendLayout();
-        this.Toolbar.Name = "Toolbar";
-        this.Toolbar.Dock = DockStyle.Top;
-        this.Toolbar.Height = 56;
-        this.Toolbar.AutoScroll = true;
-        this.Toolbar.WrapContents = false;
-        this.Toolbar.Padding = new Padding(12, 5, 12, 5);
-        this.Toolbar.BackColor = Color.White;
-        this.Content.Name = "Content";
-        this.Content.Dock = DockStyle.Fill;
-        this.Content.Padding = new Padding(12);
-        this.Footer.Name = "Footer";
-        this.Footer.Dock = DockStyle.Bottom;
-        this.Footer.Height = 64;
-        this.Footer.Padding = new Padding(12, 6, 12, 6);
-        this.Footer.AutoScroll = true;
-        this.Footer.WrapContents = false;
-        this.Footer.Visible = false;
-        this._pageTitle.Name = "_pageTitle";
-        this._pageTitle.Dock = DockStyle.Top;
-        this._pageTitle.Height = 58;
-        this._pageTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-        this._pageTitle.Padding = new Padding(16, 10, 0, 0);
-        this._pageTitle.Text = "Hàng đợi";
-        this._search.Multiline = false;
-        this._search.Height = 32;
-        this._search.ScrollBars = ScrollBars.None;
-        this._search.Name = "_search";
-        this._filter.DropDownStyle = ComboBoxStyle.DropDownList;
-        this._filter.Name = "_filter";
-        this._grid.ReadOnly = true;
-        this._grid.AllowUserToAddRows = false;
-        this._grid.AllowUserToDeleteRows = false;
-        this._grid.AutoGenerateColumns = false;
-        this._grid.MultiSelect = false;
-        this._grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        this._grid.RowHeadersVisible = false;
-        this._grid.Dock = DockStyle.Fill;
-        this._grid.BackgroundColor = Color.White;
-        this._grid.BorderStyle = BorderStyle.None;
-        this._grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        this._grid.EnableHeadersVisualStyles = false;
-        this._grid.ColumnHeadersHeight = 40;
-        this._grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(226, 232, 240);
-        this._grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(15, 23, 42);
-        this._grid.DefaultCellStyle.Padding = new Padding(6);
-        this._grid.RowTemplate.Height = 38;
-        this._grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
-        this._grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(204, 251, 241);
-        this._grid.DefaultCellStyle.SelectionForeColor = Color.FromArgb(15, 23, 42);
-        this._layout1_Column.DataPropertyName = "c0";
-        this._layout1_Column.Name = "c0";
-        this._layout1_Column.HeaderText = "STT";
-        this._layout1_Column.MinimumWidth = 65;
-        this._layout1_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-        this._layout2_Column.DataPropertyName = "c1";
-        this._layout2_Column.Name = "c1";
-        this._layout2_Column.HeaderText = "Tên bệnh nhân";
-        this._layout2_Column.MinimumWidth = 65;
-        this._layout2_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-        this._layout3_Column.DataPropertyName = "c2";
-        this._layout3_Column.Name = "c2";
-        this._layout3_Column.HeaderText = "CCCD";
-        this._layout3_Column.MinimumWidth = 65;
-        this._layout3_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-        this._layout4_Column.DataPropertyName = "c3";
-        this._layout4_Column.Name = "c3";
-        this._layout4_Column.HeaderText = "Bác sĩ";
-        this._layout4_Column.MinimumWidth = 65;
-        this._layout4_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-        this._layout5_Column.DataPropertyName = "c4";
-        this._layout5_Column.Name = "c4";
-        this._layout5_Column.HeaderText = "Ưu tiên";
-        this._layout5_Column.MinimumWidth = 65;
-        this._layout5_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-        this._layout6_Column.DataPropertyName = "c5";
-        this._layout6_Column.Name = "c5";
-        this._layout6_Column.HeaderText = "Trạng thái";
-        this._layout6_Column.MinimumWidth = 65;
-        this._layout6_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-        this._grid.Name = "_grid";
-        this._search.Width = 270;
-        this._search.PlaceholderText = "Nhập từ khóa tìm kiếm";
-        this.Toolbar.Controls.Add(this._search);
-        this._layout7_Button.Text = "Tìm";
-        this._layout7_Button.BackColor = Color.White;
-        this._layout7_Button.ForeColor = Color.FromArgb(15, 23, 42);
-        this.Toolbar.Controls.Add(this._layout7_Button);
-        this._layout7_Button.Click += _layout7_Button_Click;
-        this._layout8_Button.Text = "In tất cả số khám";
-        this._layout8_Button.BackColor = Color.FromArgb(22, 163, 74);
-        this._layout8_Button.ForeColor = Color.White;
-        this.Toolbar.Controls.Add(this._layout8_Button);
-        this._layout8_Button.Click += _layout8_Button_Click;
-        this._layout10_RowActionsHost.Dock = DockStyle.Fill;
-        this._layout10_RowActionsHost.BackColor = Color.FromArgb(241, 245, 249);
-        this._layout10_RowActionsHost.Controls.Add(this._grid);
-        this.Content.Controls.Add(this._layout10_RowActionsHost);
-        Controls.Add(this.Content);
-        Controls.Add(this.Toolbar);
-        Controls.Add(this._pageTitle);
-        Controls.Add(this.Footer);
-        Size = new Size(1100, 720);
-        this._grid.Columns.AddRange(new DataGridViewColumn[] { this._layout1_Column, this._layout2_Column, this._layout3_Column, this._layout4_Column, this._layout5_Column, this._layout6_Column });
-        ((System.ComponentModel.ISupportInitialize)this._grid).EndInit();
-        this._layout10_RowActionsHost.ResumeLayout(false);
-        this._layout10_RowActionsHost.PerformLayout();
-        this.Footer.ResumeLayout(false);
-        this.Footer.PerformLayout();
-        this.Content.ResumeLayout(false);
-        this.Content.PerformLayout();
-        this.Toolbar.ResumeLayout(false);
-        this.Toolbar.PerformLayout();
-        ResumeLayout(false);
-        PerformLayout();
+        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
     }
+    private void _layout8_Button_Click(object? sender, EventArgs e)
+    {
+        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+    }
+    private RowActionList<DataRowView> _layout9_list = null!;
 }
