@@ -2,7 +2,7 @@ using PhongKham.Core;
 
 namespace PhongKham.Base;
 
-public class BaseForm : Form
+public partial class BaseForm : Form
 {
     [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public object? Args
@@ -12,15 +12,7 @@ public class BaseForm : Form
 
     public BaseForm()
     {
-        Font = Theme.BodyFont;
-        BackColor = Theme.Background;
-        ForeColor = Theme.Text;
-        AutoScaleMode = AutoScaleMode.Dpi;
-        AutoScaleDimensions = new SizeF(96, 96);
-        ClientSize = new Size(1280, 800);
-        MinimumSize = new Size(1000, 680);
-        StartPosition = FormStartPosition.CenterScreen;
-        KeyPreview = true;
+        InitializeComponent();
     }
 
     internal void SetArguments(object? args)
@@ -35,6 +27,7 @@ public class BaseForm : Form
 
     protected override void OnLoad(EventArgs e)
     {
+        if (DesignTimeSupport.IsDesignMode(this)) { base.OnLoad(e); return; }
         PhongKham.Controls.SelectionCleaner.Attach(this);
         Rectangle area = Screen.FromControl(this).WorkingArea;
         MinimumSize = new Size(Math.Min(MinimumSize.Width, area.Width), Math.Min(MinimumSize.Height, area.Height));

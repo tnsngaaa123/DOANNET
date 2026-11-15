@@ -1,12 +1,282 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>net10.0-windows</TargetFramework>
-        <Nullable>enable</Nullable>
-        <UseWindowsForms>true</UseWindowsForms>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>DOANNET</RootNamespace>
-    </PropertyGroup>
-
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>DOANNET</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Base/BaseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Base/BaseDialog.Designer.cs">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Base/BaseDialog.resx">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Base/BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Base/BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Base/BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Base/BasePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Base/BasePage.Designer.cs">
+      <DependentUpon>BasePage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Base/BasePage.resx">
+      <DependentUpon>BasePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Auth/DangNhapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/Auth/DangNhapForm.Designer.cs">
+      <DependentUpon>DangNhapForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Auth/DangNhapForm.resx">
+      <DependentUpon>DangNhapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Auth/TrangChuPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/Auth/TrangChuPage.Designer.cs">
+      <DependentUpon>TrangChuPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Auth/TrangChuPage.resx">
+      <DependentUpon>TrangChuPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/BacSi/DanhSachChoKhamPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/BacSi/DanhSachChoKhamPage.Designer.cs">
+      <DependentUpon>DanhSachChoKhamPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/BacSi/DanhSachChoKhamPage.resx">
+      <DependentUpon>DanhSachChoKhamPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/BacSi/KeDonPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/BacSi/KeDonPage.Designer.cs">
+      <DependentUpon>KeDonPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/BacSi/KeDonPage.resx">
+      <DependentUpon>KeDonPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/BacSi/PhieuKhamPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/BacSi/PhieuKhamPage.Designer.cs">
+      <DependentUpon>PhieuKhamPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/BacSi/PhieuKhamPage.resx">
+      <DependentUpon>PhieuKhamPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Chung/Dialogs/ChiTietHoSoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/Chung/Dialogs/ChiTietHoSoDialog.Designer.cs">
+      <DependentUpon>ChiTietHoSoDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Chung/Dialogs/ChiTietHoSoDialog.resx">
+      <DependentUpon>ChiTietHoSoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Chung/Dialogs/ChiTietThanhToanDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/Chung/Dialogs/ChiTietThanhToanDialog.Designer.cs">
+      <DependentUpon>ChiTietThanhToanDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Chung/Dialogs/ChiTietThanhToanDialog.resx">
+      <DependentUpon>ChiTietThanhToanDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Chung/Dialogs/DoiMatKhauDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/Chung/Dialogs/DoiMatKhauDialog.Designer.cs">
+      <DependentUpon>DoiMatKhauDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Chung/Dialogs/DoiMatKhauDialog.resx">
+      <DependentUpon>DoiMatKhauDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Chung/Dialogs/KetQuaXuatThuocDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/Chung/Dialogs/KetQuaXuatThuocDialog.Designer.cs">
+      <DependentUpon>KetQuaXuatThuocDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Chung/Dialogs/KetQuaXuatThuocDialog.resx">
+      <DependentUpon>KetQuaXuatThuocDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Chung/Dialogs/LichSuKhamDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/Chung/Dialogs/LichSuKhamDialog.Designer.cs">
+      <DependentUpon>LichSuKhamDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Chung/Dialogs/LichSuKhamDialog.resx">
+      <DependentUpon>LichSuKhamDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Chung/Dialogs/TaoHoSoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/Chung/Dialogs/TaoHoSoDialog.Designer.cs">
+      <DependentUpon>TaoHoSoDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Chung/Dialogs/TaoHoSoDialog.resx">
+      <DependentUpon>TaoHoSoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/Chung/LichSuKhamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/Chung/LichSuKhamPanel.Designer.cs">
+      <DependentUpon>LichSuKhamPanel.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/Chung/LichSuKhamPanel.resx">
+      <DependentUpon>LichSuKhamPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/DuocKho/DanhMucThuocPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/DuocKho/DanhMucThuocPage.Designer.cs">
+      <DependentUpon>DanhMucThuocPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/DuocKho/DanhMucThuocPage.resx">
+      <DependentUpon>DanhMucThuocPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/DuocKho/DanhSachChoLayThuocPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/DuocKho/DanhSachChoLayThuocPage.Designer.cs">
+      <DependentUpon>DanhSachChoLayThuocPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/DuocKho/DanhSachChoLayThuocPage.resx">
+      <DependentUpon>DanhSachChoLayThuocPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/DuocKho/SuaThongTinThuocPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/DuocKho/SuaThongTinThuocPage.Designer.cs">
+      <DependentUpon>SuaThongTinThuocPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/DuocKho/SuaThongTinThuocPage.resx">
+      <DependentUpon>SuaThongTinThuocPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/DuocKho/ThemThuocPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/DuocKho/ThemThuocPage.Designer.cs">
+      <DependentUpon>ThemThuocPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/DuocKho/ThemThuocPage.resx">
+      <DependentUpon>ThemThuocPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/DuocKho/ThuocSapHetHanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/DuocKho/ThuocSapHetHanPage.Designer.cs">
+      <DependentUpon>ThuocSapHetHanPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/DuocKho/ThuocSapHetHanPage.resx">
+      <DependentUpon>ThuocSapHetHanPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/DuocKho/ThuocSapHetHangPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/DuocKho/ThuocSapHetHangPage.Designer.cs">
+      <DependentUpon>ThuocSapHetHangPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/DuocKho/ThuocSapHetHangPage.resx">
+      <DependentUpon>ThuocSapHetHangPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/LeTan/HangDoiPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/LeTan/HangDoiPage.Designer.cs">
+      <DependentUpon>HangDoiPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/LeTan/HangDoiPage.resx">
+      <DependentUpon>HangDoiPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/LeTan/HoSoBenhNhanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/LeTan/HoSoBenhNhanPage.Designer.cs">
+      <DependentUpon>HoSoBenhNhanPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/LeTan/HoSoBenhNhanPage.resx">
+      <DependentUpon>HoSoBenhNhanPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/LeTan/PhongChoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pages/LeTan/PhongChoForm.Designer.cs">
+      <DependentUpon>PhongChoForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/LeTan/PhongChoForm.resx">
+      <DependentUpon>PhongChoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/LeTan/TiepNhanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/LeTan/TiepNhanPage.Designer.cs">
+      <DependentUpon>TiepNhanPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/LeTan/TiepNhanPage.resx">
+      <DependentUpon>TiepNhanPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/QuanTri/QuanTriPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/QuanTri/QuanTriPage.Designer.cs">
+      <DependentUpon>QuanTriPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/QuanTri/QuanTriPage.resx">
+      <DependentUpon>QuanTriPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/ThuNgan/DanhSachChoThanhToanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/ThuNgan/DanhSachChoThanhToanPage.Designer.cs">
+      <DependentUpon>DanhSachChoThanhToanPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/ThuNgan/DanhSachChoThanhToanPage.resx">
+      <DependentUpon>DanhSachChoThanhToanPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/ThuNgan/DanhSachDaThanhToanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/ThuNgan/DanhSachDaThanhToanPage.Designer.cs">
+      <DependentUpon>DanhSachDaThanhToanPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/ThuNgan/DanhSachDaThanhToanPage.resx">
+      <DependentUpon>DanhSachDaThanhToanPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Pages/ThuNgan/ThanhToanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages/ThuNgan/ThanhToanPage.Designer.cs">
+      <DependentUpon>ThanhToanPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Pages/ThuNgan/ThanhToanPage.resx">
+      <DependentUpon>ThanhToanPage.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

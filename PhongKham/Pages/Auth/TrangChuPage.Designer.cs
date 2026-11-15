@@ -1,6 +1,149 @@
-namespace PhongKham.Pages.Auth;
+#nullable disable
+using PhongKham.Base;
+using PhongKham.Core;
+using PhongKham.Controls;
+using PhongKham.Pages.Chung.Dialogs;
 
-public class TrangChuPage_Designer
+namespace PhongKham.Pages.Auth;
+public sealed partial class TrangChuPage
 {
-    
+    private System.ComponentModel.IContainer components;
+    private FlowLayoutPanel Toolbar;
+    private Panel Content;
+    private FlowLayoutPanel Footer;
+    private Label _pageTitle;
+    private TableLayoutPanel _layout1_cards;
+    private KpiCard _layout2_count;
+    private KpiCard _layout3_money;
+    private AppButton _layout4_Button;
+    private AppButton _layout5_Button;
+    private AppButton _layout6_Button;
+    private AppButton _layout7_Button;
+    private AppButton _layout8_Button;
+    private AppButton _layout9_Button;
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+            this.components?.Dispose();
+        base.Dispose(disposing);
+    }
+
+    private void InitializeComponent()
+    {
+        this.components = new System.ComponentModel.Container();
+        this.Toolbar = new FlowLayoutPanel();
+        this.Content = new Panel();
+        this.Footer = new FlowLayoutPanel();
+        this._pageTitle = new Label();
+        this._layout1_cards = new TableLayoutPanel();
+        this._layout2_count = new KpiCard();
+        this._layout3_money = new KpiCard();
+        this._layout4_Button = new AppButton();
+        this._layout5_Button = new AppButton();
+        this._layout6_Button = new AppButton();
+        this._layout7_Button = new AppButton();
+        this._layout8_Button = new AppButton();
+        this._layout9_Button = new AppButton();
+        this.Toolbar.Name = "Toolbar";
+        this.Content.Name = "Content";
+        this.Footer.Name = "Footer";
+        this._pageTitle.Name = "_pageTitle";
+        this._layout1_cards.Name = "_layout1_cards";
+        this._layout2_count.Name = "_layout2_count";
+        this._layout3_money.Name = "_layout3_money";
+        this._layout4_Button.Name = "_layout4_Button";
+        this._layout5_Button.Name = "_layout5_Button";
+        this._layout6_Button.Name = "_layout6_Button";
+        this._layout7_Button.Name = "_layout7_Button";
+        this._layout8_Button.Name = "_layout8_Button";
+        this._layout9_Button.Name = "_layout9_Button";
+        this.Toolbar.SuspendLayout();
+        this.Content.SuspendLayout();
+        this.Footer.SuspendLayout();
+        this._layout1_cards.SuspendLayout();
+        SuspendLayout();
+        this.Toolbar.Name = "Toolbar";
+        this.Toolbar.Dock = DockStyle.Top;
+        this.Toolbar.Height = 56;
+        this.Toolbar.AutoScroll = true;
+        this.Toolbar.WrapContents = false;
+        this.Toolbar.Padding = new Padding(12, 5, 12, 5);
+        this.Toolbar.BackColor = Color.White;
+        this.Content.Name = "Content";
+        this.Content.Dock = DockStyle.Fill;
+        this.Content.Padding = new Padding(12);
+        this.Footer.Name = "Footer";
+        this.Footer.Dock = DockStyle.Bottom;
+        this.Footer.Height = 64;
+        this.Footer.Padding = new Padding(12, 6, 12, 6);
+        this.Footer.AutoScroll = true;
+        this.Footer.WrapContents = false;
+        this.Footer.Visible = false;
+        this._pageTitle.Name = "_pageTitle";
+        this._pageTitle.Dock = DockStyle.Top;
+        this._pageTitle.Height = 58;
+        this._pageTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        this._pageTitle.Padding = new Padding(16, 10, 0, 0);
+        this._pageTitle.Text = "Trang chủ";
+        this._layout1_cards.Dock = DockStyle.Top;
+        this._layout1_cards.Height = 140;
+        this._layout1_cards.ColumnCount = 2;
+        this._layout1_cards.Name = "_layout1_cards";
+        this._layout1_cards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        this._layout1_cards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        this._layout2_count.Caption = "Lượt khám hôm nay";
+        this._layout2_count.Dock = DockStyle.Fill;
+        this._layout2_count.Name = "_layout2_count";
+        this._layout3_money.Caption = "Doanh thu hôm nay";
+        this._layout3_money.Dock = DockStyle.Fill;
+        this._layout3_money.Name = "_layout3_money";
+        this._layout1_cards.Controls.Add(this._layout2_count, 0, 0);
+        this._layout1_cards.Controls.Add(this._layout3_money, 1, 0);
+        this.Content.Controls.Add(this._layout1_cards);
+        this._layout4_Button.Text = "Tạo hồ sơ";
+        this._layout4_Button.BackColor = Color.White;
+        this._layout4_Button.ForeColor = Color.FromArgb(15, 23, 42);
+        this.Toolbar.Controls.Add(this._layout4_Button);
+        this._layout4_Button.Click += _layout4_Button_Click;
+        this._layout5_Button.Text = "Chi tiết hồ sơ";
+        this._layout5_Button.BackColor = Color.White;
+        this._layout5_Button.ForeColor = Color.FromArgb(15, 23, 42);
+        this.Toolbar.Controls.Add(this._layout5_Button);
+        this._layout5_Button.Click += _layout5_Button_Click;
+        this._layout6_Button.Text = "Lịch sử khám";
+        this._layout6_Button.BackColor = Color.White;
+        this._layout6_Button.ForeColor = Color.FromArgb(15, 23, 42);
+        this.Toolbar.Controls.Add(this._layout6_Button);
+        this._layout6_Button.Click += _layout6_Button_Click;
+        this._layout7_Button.Text = "Chi tiết biên lai";
+        this._layout7_Button.BackColor = Color.White;
+        this._layout7_Button.ForeColor = Color.FromArgb(15, 23, 42);
+        this.Toolbar.Controls.Add(this._layout7_Button);
+        this._layout7_Button.Click += _layout7_Button_Click;
+        this._layout8_Button.Text = "Kết quả xuất thuốc";
+        this._layout8_Button.BackColor = Color.White;
+        this._layout8_Button.ForeColor = Color.FromArgb(15, 23, 42);
+        this.Toolbar.Controls.Add(this._layout8_Button);
+        this._layout8_Button.Click += _layout8_Button_Click;
+        this._layout9_Button.Text = "Đổi mật khẩu";
+        this._layout9_Button.BackColor = Color.White;
+        this._layout9_Button.ForeColor = Color.FromArgb(15, 23, 42);
+        this.Toolbar.Controls.Add(this._layout9_Button);
+        this._layout9_Button.Click += _layout9_Button_Click;
+        Controls.Add(this.Content);
+        Controls.Add(this.Toolbar);
+        Controls.Add(this._pageTitle);
+        Controls.Add(this.Footer);
+        Size = new Size(1100, 720);
+        this._layout1_cards.ResumeLayout(false);
+        this._layout1_cards.PerformLayout();
+        this.Footer.ResumeLayout(false);
+        this.Footer.PerformLayout();
+        this.Content.ResumeLayout(false);
+        this.Content.PerformLayout();
+        this.Toolbar.ResumeLayout(false);
+        this.Toolbar.PerformLayout();
+        ResumeLayout(false);
+        PerformLayout();
+    }
 }

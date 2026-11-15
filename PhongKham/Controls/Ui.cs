@@ -119,6 +119,12 @@ public static class Ui
         GridStyler.Apply(g);
         foreach (var col in columns)
             GridStyler.Add(g, col.Property, col.Title);
+        ConfigureGridFormatting(g);
+        return g;
+    }
+
+    public static void ConfigureGridFormatting(DataGridView g)
+    {
         g.CellFormatting += (_, e) =>
         {
             if (e.ColumnIndex < 0 || e.Value is null)
@@ -150,7 +156,6 @@ public static class Ui
                 e.FormattingApplied = true;
             }
         };
-        return g;
     }
 
     public static void RowAction<T>(DataGridView grid, string key, string text, Action<T> action, Func<T, bool>? allowed = null)
