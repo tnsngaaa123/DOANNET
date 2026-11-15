@@ -65,7 +65,7 @@ public sealed partial class LichSuKhamPanel
         this._layout4_Column.MinimumWidth = 65;
         this._layout4_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         this._layout5_Column.DataPropertyName = "c3";
-        this._layout5_Column.Name = "c3";
+        this._layout5_Column.Name = "c3";````
         this._layout5_Column.HeaderText = "Đơn thuốc";
         this._layout5_Column.MinimumWidth = 65;
         this._layout5_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
