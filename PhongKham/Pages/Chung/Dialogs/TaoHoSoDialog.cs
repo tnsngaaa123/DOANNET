@@ -7,8 +7,12 @@ public sealed partial class TaoHoSoDialog : BaseDialog
     
     public string HoTen=>_name.Text;
     public string CanCuoc=>_cccd.Text;
-    
-    protected override bool ValidateAndSave(){MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");return false;}
+
+    protected override bool ValidateAndSave()
+    {
+        return true;
+    }
+
     public TaoHoSoDialog()
     {
         InitializeComponent();

@@ -12,8 +12,6 @@ public sealed class DonThuoc
     }
     public DateTime NgayKe { get; set; } = DateTime.Now;
     public string TrangThai { get; set; } = "DaKe";
-    
-    
     public DateTime? NgayXuat
     {
         get; set;
@@ -22,5 +20,4 @@ public sealed class DonThuoc
     {
         get; set;
     }
-
 }

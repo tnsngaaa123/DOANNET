@@ -23,6 +23,7 @@ public sealed class ChiTietDonThuoc
         get; set;
     }
     public string LieuDung { get; set; } = "";
+
     public double Sang
     {
         get; set;
@@ -41,5 +42,4 @@ public sealed class ChiTietDonThuoc
     }
     public int SoNgay { get; set; } = 1;
     public string ThoiDiemUong { get; set; } = "SauAn";
-
 }
