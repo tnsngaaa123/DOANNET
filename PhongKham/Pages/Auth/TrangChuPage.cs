@@ -16,6 +16,9 @@ public sealed partial class TrangChuPage : BasePage
 
         _layout2_count.Set("3");
         _layout3_money.Set("1.500.000 đ");
+        var values=new decimal[] {0,1,2,4,3,5,3};
+        _visits.SetData(values.Select((value,i)=>(DateTime.Today.AddDays(i-6).ToString("dd/MM"),value)));
+        _revenue.SetData(values.Select((value,i)=>(DateTime.Today.AddDays(i-6).ToString("dd/MM"),value*150000)));
     }
 
     private void _layout4_Button_Click(object? sender, EventArgs e)

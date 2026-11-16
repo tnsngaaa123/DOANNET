@@ -8,6 +8,9 @@ namespace PhongKham.Pages.Auth;
 public sealed partial class TrangChuPage
 {
     private System.ComponentModel.IContainer components;
+    private BarChartControl _visits;
+    private BarChartControl _revenue;
+    private TableLayoutPanel _chartHost;
     private FlowLayoutPanel Toolbar;
     private Panel Content;
     private FlowLayoutPanel Footer;
@@ -31,6 +34,7 @@ public sealed partial class TrangChuPage
     private void InitializeComponent()
     {
         this.components = new System.ComponentModel.Container();
+        _visits=new BarChartControl(); _revenue=new BarChartControl(); _chartHost=new TableLayoutPanel();
         this.Toolbar = new FlowLayoutPanel();
         this.Content = new Panel();
         this.Footer = new FlowLayoutPanel();
@@ -99,7 +103,12 @@ public sealed partial class TrangChuPage
         this._layout3_money.Name = "_layout3_money";
         this._layout1_cards.Controls.Add(this._layout2_count, 0, 0);
         this._layout1_cards.Controls.Add(this._layout3_money, 1, 0);
-        this.Content.Controls.Add(this._layout1_cards);
+        _visits.Name="_visits"; _revenue.Name="_revenue"; _chartHost.Name="_chartHost";
+        _visits.Title="Lượt khám trong 7 ngày"; _revenue.Title="Doanh thu trong 7 ngày"; _revenue.Money=true;
+        _visits.Dock=DockStyle.Fill; _revenue.Dock=DockStyle.Fill; _chartHost.Dock=DockStyle.Fill;
+        _chartHost.ColumnCount=2; _chartHost.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50)); _chartHost.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
+        _chartHost.Controls.Add(_visits,0,0); _chartHost.Controls.Add(_revenue,1,0);
+        this.Content.Controls.Add(_chartHost); this.Content.Controls.Add(this._layout1_cards);
         this._layout4_Button.Text = "Tạo hồ sơ";
         this._layout4_Button.BackColor = Color.White;
         this._layout4_Button.ForeColor = Color.FromArgb(15, 23, 42);
