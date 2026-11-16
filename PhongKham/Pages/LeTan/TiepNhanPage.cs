@@ -8,6 +8,7 @@ namespace PhongKham.Pages.LeTan;
 public sealed partial class TiepNhanPage : BasePage
 {
     private readonly DataTable _table=new();
+
     
     
     
@@ -20,10 +21,12 @@ public sealed partial class TiepNhanPage : BasePage
         foreach(var row in rows)filtered.ImportRow(row.Row);
         ((AppGrid)_grid).BindRows(filtered.DefaultView);
     }
+
     public TiepNhanPage()
     {
         InitializeComponent();
     }
+
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
@@ -42,13 +45,22 @@ public sealed partial class TiepNhanPage : BasePage
         _layout11_RowActionsHost.Controls.Add(_layout10_list);
     }
 
+
     private void _layout8_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(Find);
     }
+
     private void _layout9_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(() =>
+        {
+            using var dialog=new TaoHoSoDialog(true);
+            if(dialog.ShowDialog(this)!=DialogResult.OK)return;
+            int id=_table.Rows.Count+1;
+            _table.Rows.Add(id,dialog.HoTen,dialog.CanCuoc,"01/01/1995","Bác sĩ minh họa",id.ToString(),"Không","Chờ khám");
+            Find();
+        });
     }
     private RowActionList<DataRowView> _layout10_list = null!;
 }
