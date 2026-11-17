@@ -1,7 +1,6 @@
 using PhongKham.Core;
 
 namespace PhongKham.Controls;
-
 public sealed class RowActionList<T> : UserControl where T : class
 {
     private readonly DataGridView _grid;
