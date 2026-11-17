@@ -19,10 +19,19 @@ public sealed partial class ThemThuocPage : BasePage
 
     private void _layout21_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(() =>
+        {
+            if(string.IsNullOrWhiteSpace(_layout6_TextBox.Text) || string.IsNullOrWhiteSpace(_layout8_TextBox.Text)) throw new NghiepVuException("Nhập mã và tên thuốc.");
+            if(_layout16_NumericUpDown.Value<=0) throw new NghiepVuException("Số lượng phải lớn hơn 0.");
+            PhongKham.Core.Dialogs.Info("Thông tin nhập hợp lệ.");
+        });
     }
     private void _layout26_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(() =>
+        {
+            using var choose=new OpenFileDialog { Filter="Excel (*.xlsx)|*.xlsx" };
+            if(choose.ShowDialog()==DialogResult.OK) _layout24_drop.Text=Path.GetFileName(choose.FileName);
+        });
     }
 }
