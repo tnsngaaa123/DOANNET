@@ -10,6 +10,7 @@ public sealed partial class LichSuKhamPanel
     private DataGridViewTextBoxColumn _layout3_Column;
     private DataGridViewTextBoxColumn _layout4_Column;
     private DataGridViewTextBoxColumn _layout5_Column;
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -66,11 +67,11 @@ public sealed partial class LichSuKhamPanel
         this._layout4_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         this._layout5_Column.DataPropertyName = "c3";
         this._layout5_Column.Name = "c3";
-        this._layout5_Column.HeaderText = "Đơn thuốc";
+        this._layout5_Column.HeaderText = "Kết luận";
         this._layout5_Column.MinimumWidth = 65;
         this._layout5_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-        this._layout1_DataGridView.Name = "_layout1_DataGridView";
         Controls.Add(this._layout1_DataGridView);
+        Size = new Size(800, 450);
         this._layout1_DataGridView.Columns.AddRange(new DataGridViewColumn[] { this._layout2_Column, this._layout3_Column, this._layout4_Column, this._layout5_Column });
         ((System.ComponentModel.ISupportInitialize)this._layout1_DataGridView).EndInit();
         ResumeLayout(false);

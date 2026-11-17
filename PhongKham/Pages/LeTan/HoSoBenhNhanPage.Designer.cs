@@ -25,6 +25,7 @@ public sealed partial class HoSoBenhNhanPage
     private AppButton _layout7_Button;
     private AppButton _layout8_Button;
     private Panel _layout10_RowActionsHost;
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
