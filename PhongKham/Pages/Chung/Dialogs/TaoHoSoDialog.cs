@@ -8,7 +8,13 @@ public sealed partial class TaoHoSoDialog : BaseDialog
     public string HoTen=>_name.Text;
     public string CanCuoc=>_cccd.Text;
     
-    protected override bool ValidateAndSave(){MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");return false;}
+    protected override bool ValidateAndSave(){
+
+        if(string.IsNullOrWhiteSpace(HoTen)) { PhongKham.Core.Dialogs.Warning("Nhập họ tên bệnh nhân."); return false; }
+        if(CanCuoc.Length!=12 || !CanCuoc.All(char.IsDigit)) { PhongKham.Core.Dialogs.Warning("CCCD phải có đúng 12 chữ số."); return false; }
+        return true;
+    }
+
     public TaoHoSoDialog()
     {
         InitializeComponent();
