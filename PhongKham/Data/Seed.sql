@@ -1,0 +1,10 @@
+INSERT INTO NhomThuoc(Id,TenNhom) VALUES(1,'Giảm đau');
+INSERT INTO NhomThuoc(Id,TenNhom) VALUES(2,'Kháng sinh');
+INSERT INTO NhomThuoc(Id,TenNhom) VALUES(3,'Vitamin');
+INSERT INTO NhomThuoc(Id,TenNhom) VALUES(4,'Tiêu hóa');
+INSERT INTO NhomThuoc(Id,TenNhom) VALUES(5,'Hô hấp');
+INSERT INTO NhomThuoc(Id,TenNhom) VALUES(6,'Ngoài da');
+INSERT INTO CauHinh(Khoa,GiaTri) VALUES('TenPhongKham','PHÒNG KHÁM');
+INSERT INTO CauHinh(Khoa,GiaTri) VALUES('DiaChi','');
+INSERT INTO CauHinh(Khoa,GiaTri) VALUES('SoDienThoai','');
+INSERT INTO CauHinh(Khoa,GiaTri) VALUES('TienKhamMacDinh','150000');
