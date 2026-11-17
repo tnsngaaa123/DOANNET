@@ -41,11 +41,11 @@ public sealed partial class DanhMucThuocPage : BasePage
 
     private void _layout7_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(Find);
     }
     private void _layout8_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(() => Navigator.Open(PageKeys.ThemThuoc));
     }
     private void _layout9_Button_Click(object? sender, EventArgs e)
     {

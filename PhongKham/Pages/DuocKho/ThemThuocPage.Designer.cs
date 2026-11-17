@@ -295,7 +295,7 @@ public sealed partial class ThemThuocPage
         this._layout25_autoFooter.Height = 60;
         this._layout25_autoFooter.FlowDirection = FlowDirection.RightToLeft;
         this._layout25_autoFooter.Name = "_layout25_autoFooter";
-        this._layout26_Button.Text = "Thêm thuốc";
+        this._layout26_Button.Text = "Chọn file Excel";
         this._layout26_Button.BackColor = Color.FromArgb(22, 163, 74);
         this._layout26_Button.ForeColor = Color.White;
         this._layout25_autoFooter.Controls.Add(this._layout26_Button);
