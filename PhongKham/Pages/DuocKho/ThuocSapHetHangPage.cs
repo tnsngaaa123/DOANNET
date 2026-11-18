@@ -1,48 +1,57 @@
-using System.Data;
-using PhongKham.Base;
 using PhongKham.Core;
+using PhongKham.Base;
 using PhongKham.Controls;
-using PhongKham.Pages.Chung.Dialogs;
+using PhongKham.Models.Views;
+using PhongKham.Services;
+
 namespace PhongKham.Pages.DuocKho;
 [PageInfo(PageKeys.ThuocSapHetHang, "Thuốc sắp hết hàng", PageGroups.DuocKho, 40, Roles.DuocSi)]
 public sealed partial class ThuocSapHetHangPage : BasePage
 {
-    private readonly DataTable _table=new();
-    
-    
-    
-
+    private List<SoLuongThuocRow> _rows = new();
+    private string _appliedFilter = "";
+    protected override void OnPageShown() => Execute(Find);
     private void Find()
     {
-        var rows=_table.DefaultView.Cast<DataRowView>().Where(row=>row.Row.ItemArray.Any(value=>Convert.ToString(value)?.Contains(_search.Text,StringComparison.CurrentCultureIgnoreCase)==true));
-        
-        var filtered=_table.Clone();
-        foreach(var row in rows)filtered.ImportRow(row.Row);
-        ((AppGrid)_grid).BindRows(filtered.DefaultView);
+        string value = Ui.Value(_filter);
+        _rows = CanhBaoThuocService.SoLuong(_search.Text.Trim(), value == "" ? null : int.Parse(value));
+        _appliedFilter = _filter.Text + " · Từ khóa: " + _search.Text.Trim();
+        Ui.Bind(_grid, _rows);
     }
+
     public ThuocSapHetHangPage()
     {
         InitializeComponent();
     }
+
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
-        _table.Columns.Add("id",typeof(int));
-        _table.Columns.Add("c0");
-        _table.Columns.Add("c1");
-        _table.Columns.Add("c2");
-        _table.Rows.Add(1,"Paracetamol","Viên","4000");
-        _table.Rows.Add(2,"Vitamin C","Viên","800");
-        ((AppGrid)_grid).BindRows(_table.DefaultView);
-        _grid.DataBindingComplete+=(_,_)=>{foreach(DataGridViewRow row in _grid.Rows)row.DefaultCellStyle.BackColor=row.Index%2==0?Color.LightYellow:Color.MistyRose;};
+        _layout5_Button.Enabled=false;
+        Ui.Choices(_filter, ("", "Tất cả"), ("5000", "Danh sách thuốc có số lượng dưới 5000"), ("3000", "Danh sách thuốc có số lượng dưới 3000"), ("1000", "Danh sách thuốc có số lượng dưới 1000"));
+        _grid.RowPrePaint += (_, e) =>
+        {
+            if (_grid.Rows[e.RowIndex].DataBoundItem is SoLuongThuocRow x)
+                _grid.Rows[e.RowIndex].DefaultCellStyle.BackColor = Ui.WarningColor(CanhBaoThuocService.MauSoLuong(x.SoLuongCon));
+        };
     }
 
     private void _layout4_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(Find);
     }
+
     private void _layout5_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(() => Ui.PrintList("Danh sách số lượng thuốc", new[] { "Tên", "ĐVT", "Số lượng còn lại" }, _rows.Select(x => new[] { x.TenThuoc, x.DonViTinh, x.SoLuongCon.ToString() }), _appliedFilter));
+    }
+
+    private void _layout6_OnKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            Execute(Find);
+            e.SuppressKeyPress = true;
+        }
     }
 }
