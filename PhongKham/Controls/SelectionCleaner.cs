@@ -1,5 +1,4 @@
 namespace PhongKham.Controls;
-
 public static class SelectionCleaner
 {
     public static void Attach(Control root)

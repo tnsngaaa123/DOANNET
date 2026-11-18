@@ -1,0 +1,20 @@
+
+# Build output
+**/bin/
+**/obj/
+
+# JetBrains Rider
+.idea/
+**/.idea/
+
+# Visual Studio
+.vs/
+**/.vs/
+
+# User settings
+*.user
+*.suo
+
+# Temporary files
+*.tmp
+*.log

@@ -1,7 +1,6 @@
 using PhongKham.Core;
 
 namespace PhongKham.Controls;
-
 public enum AppButtonStyle
 {
     Primary,
@@ -12,7 +11,11 @@ public enum AppButtonStyle
 
 public class AppButton : Button
 {
-    public AppButton(string text = "", AppButtonStyle style = AppButtonStyle.Secondary)
+    public AppButton() : this("", AppButtonStyle.Secondary)
+    {
+    }
+
+    public AppButton(string text, AppButtonStyle style = AppButtonStyle.Secondary)
     {
         Text = text;
         AutoSize = true;
@@ -30,5 +33,20 @@ public class AppButton : Button
             _ => Theme.Surface
         };
         ForeColor = style is AppButtonStyle.Primary or AppButtonStyle.Danger ? Color.White : Theme.Text;
+        UseVisualStyleBackColor = false;
+    }
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        if (!Enabled && (BackColor.ToArgb() == Theme.Primary.ToArgb() || BackColor.ToArgb() == Theme.PrimaryDark.ToArgb()))
+        {
+            e.Graphics.Clear(BackColor);
+            ControlPaint.DrawBorder(e.Graphics, ClientRectangle, Theme.Border, ButtonBorderStyle.Solid);
+            var bounds = Rectangle.Inflate(ClientRectangle, -Padding.Horizontal / 2, -Padding.Vertical / 2);
+            TextRenderer.DrawText(e.Graphics, Text, Font, bounds, Color.White,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak);
+            return;
+        }
+        base.OnPaint(e);
     }
 }

@@ -21,6 +21,14 @@ public static class PageKeys
     public const string ThuocSapHetHan = "thuoc-sap-het-han";
     public const string ThuocSapHetHang = "thuoc-sap-het-hang";
     public const string QuanTri = "quan-tri";
+
+    public static string MenuFor(string key) => key switch
+    {
+        ThemThuoc or SuaThongTinThuoc => DanhMucThuoc,
+        KeDon => PhieuKham,
+        ThanhToan => ChoThanhToan,
+        _ => key
+    };
 }
 
 public static class PageGroups

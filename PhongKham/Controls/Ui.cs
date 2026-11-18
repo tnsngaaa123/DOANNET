@@ -1,8 +1,9 @@
 using System.ComponentModel;
+using System.Drawing.Printing;
 using PhongKham.Core;
+using PhongKham.Models.Views;
 
 namespace PhongKham.Controls;
-
 public static class Ui
 {
     public sealed record Choice(string Value, string Text)
@@ -119,6 +120,18 @@ public static class Ui
         GridStyler.Apply(g);
         foreach (var col in columns)
             GridStyler.Add(g, col.Property, col.Title);
+        ConfigureGridFormatting(g);
+        return g;
+    }
+
+    public static void ConfigureGridFormatting(DataGridView g)
+    {
+        g.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        g.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        g.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        g.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        g.RowTemplate.MinimumHeight = 38;
+        g.ShowCellToolTips = true;
         g.CellFormatting += (_, e) =>
         {
             if (e.ColumnIndex < 0 || e.Value is null)
@@ -150,7 +163,6 @@ public static class Ui
                 e.FormattingApplied = true;
             }
         };
-        return g;
     }
 
     public static void RowAction<T>(DataGridView grid, string key, string text, Action<T> action, Func<T, bool>? allowed = null)
@@ -186,9 +198,7 @@ public static class Ui
             };
     }
 
-    private static bool HasSelection(DataGridView grid) => grid is AppGrid appGrid
-        ? appGrid.HasUserSelection : grid.SelectedRows.Count > 0;
-
+    private static bool HasSelection(DataGridView grid) => grid is AppGrid appGrid ? appGrid.HasUserSelection : grid.SelectedRows.Count > 0;
     public static T Selected<T>(DataGridView grid)
         where T : class => HasSelection(grid) && grid.CurrentRow?.DataBoundItem is T row ? row : throw new NghiepVuException("Chọn một dòng trong danh sách.");
     public static void Bind<T>(DataGridView grid, IEnumerable<T> rows)
@@ -232,9 +242,15 @@ public static class Ui
         {
             Dialogs.Warning(e.Message);
         }
-        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        catch (Exception e)when (e is IOException or UnauthorizedAccessException)
         {
             Dialogs.Warning("Không đọc/ghi được file: " + e.Message);
+        }
+        catch (Exception e) when (e is not OutOfMemoryException and not AccessViolationException)
+        {
+            var error = e.GetBaseException();
+            Program.Log(e);
+            Dialogs.Error("Thao tác chưa hoàn tất: " + error.Message + "\nChi tiết đã được ghi vào nhật ký. Bạn có thể tiếp tục sử dụng các chức năng khác.");
         }
     }
 
@@ -246,4 +262,13 @@ public static class Ui
         return b;
     }
 
+    public static void Print(PrintDocument document) => throw new NghiepVuException("Phần in được nối ở đợt sau.");
+    public static bool PrintAndArchive(params PrintDocument[] documents) => throw new NghiepVuException("Phần in được nối ở đợt sau.");
+    public static void PrintList(string title, string[] columns, IEnumerable<string[]> rows, string filter="") => throw new NghiepVuException("Phần in được nối ở đợt sau.");
+    public static Color WarningColor(MucCanhBao value) => value switch
+    {
+        MucCanhBao.Red => Color.FromArgb(254, 202, 202),
+        MucCanhBao.Orange => Color.FromArgb(254, 215, 170),
+        MucCanhBao.Yellow => Color.FromArgb(254, 240, 138),
+        _ => Color.FromArgb(187, 247, 208)};
 }

@@ -103,6 +103,7 @@ public static class Navigator
 
         Release();
         _current = page;
+        page.Dock = DockStyle.Fill;
         _host.Controls.Add(page);
         try
         {

@@ -1,10 +1,20 @@
 using System.ComponentModel;
 
 namespace PhongKham.Controls;
-
 public sealed class AppGrid : DataGridView
 {
     private bool _binding, _userSelected;
+
+    public AppGrid()
+    {
+        AutoGenerateColumns = false;
+        AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        RowTemplate.MinimumHeight = 38;
+        ShowCellToolTips = true;
+    }
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public bool HasUserSelection => _userSelected && SelectedRows.Count > 0;
