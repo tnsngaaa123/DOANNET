@@ -2,19 +2,34 @@ using PhongKham.Core;
 using PhongKham.Controls;
 
 namespace PhongKham.Base;
-
 public partial class BaseDialog : Form
 {
-    public BaseDialog() { InitializeComponent(); }
+    public BaseDialog()
+    {
+        InitializeComponent();
+    }
+
     protected void SaveAndClose()
     {
         if (DesignTimeSupport.IsDesignMode(this)) return;
-        Ui.Run(() => { if (ValidateAndSave()) { DialogResult = DialogResult.OK; Close(); } });
+        Ui.Run(() =>
+        {
+            if (ValidateAndSave())
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+        });
     }
 
     protected override void OnShown(EventArgs e)
     {
-        if (DesignTimeSupport.IsDesignMode(this)) { base.OnShown(e); return; }
+        if (DesignTimeSupport.IsDesignMode(this))
+        {
+            base.OnShown(e);
+            return;
+        }
+
         SelectionCleaner.Attach(this);
         Rectangle area = Screen.FromControl(Owner ?? this).WorkingArea;
         int width = Math.Min(Width, area.Width - 24);

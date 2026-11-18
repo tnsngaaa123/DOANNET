@@ -1,3 +1,4 @@
+#nullable disable
 namespace PhongKham.Base;
 public partial class BaseDialog
 {

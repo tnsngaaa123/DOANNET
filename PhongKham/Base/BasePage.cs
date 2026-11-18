@@ -1,21 +1,19 @@
-using System.Reflection;
 using PhongKham.Core;
 using PhongKham.Controls;
 using Timer = System.Windows.Forms.Timer;
 
 namespace PhongKham.Base;
-
 public partial class BasePage : UserControl
 {
     [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-    public object? Args
-    {
-        get; private set;
-    }
+    public object? Args { get; private set; }
 
     private readonly List<Timer> _timers = new();
     public event EventHandler? RefreshRequested, SaveRequested;
-    public BasePage() { InitializeComponent(); }
+    public BasePage()
+    {
+        InitializeComponent();
+    }
 
     internal void Prepare(object? args)
     {
@@ -31,7 +29,10 @@ public partial class BasePage : UserControl
         OnPageHidden();
     }
 
-    protected virtual void BuildUI() { }
+    protected virtual void BuildUI()
+    {
+    }
+
     protected virtual void OnPageShown()
     {
     }
