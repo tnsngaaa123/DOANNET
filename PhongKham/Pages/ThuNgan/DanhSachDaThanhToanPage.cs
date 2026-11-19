@@ -1,53 +1,59 @@
-using System.Data;
-using PhongKham.Base;
 using PhongKham.Core;
+using PhongKham.Base;
 using PhongKham.Controls;
+using PhongKham.Models.Views;
+using PhongKham.Services;
 using PhongKham.Pages.Chung.Dialogs;
+
 namespace PhongKham.Pages.ThuNgan;
 [PageInfo(PageKeys.DaThanhToan, "Danh sách bệnh nhân đã thanh toán", PageGroups.ThuNgan, 20, Roles.ThuNgan)]
 public sealed partial class DanhSachDaThanhToanPage : BasePage
 {
-    private readonly DataTable _table=new();
-    
-    
-    
+    private List<ThanhToanRow> _rows = new();
+    private string _appliedFilter = "";
+    protected override void OnPageShown() => Execute(Find);
     private void Find()
     {
-        var rows=_table.DefaultView.Cast<DataRowView>().Where(row=>row.Row.ItemArray.Any(value=>Convert.ToString(value)?.Contains(_search.Text,StringComparison.CurrentCultureIgnoreCase)==true));
-        
-        var filtered=_table.Clone();
-        foreach(var row in rows)filtered.ImportRow(row.Row);
-        ((AppGrid)_grid).BindRows(filtered.DefaultView);
+        _rows = ThanhToanService.Paid(_allDays.Checked ? null : _day.Value.Date, Ui.Value(_method), _search.Text.Trim());
+        _appliedFilter = (_allDays.Checked ? "Tất cả ngày" : "Ngày " + _day.Value.ToString("dd/MM/yyyy")) + " · " + _method.Text + " · Từ khóa: " + _search.Text.Trim();
+        Ui.Bind(_grid, _rows);
     }
+
     public DanhSachDaThanhToanPage()
     {
         InitializeComponent();
     }
+
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
-        _table.Columns.Add("id",typeof(int));
-        _table.Columns.Add("c0");
-        _table.Columns.Add("c1");
-        _table.Columns.Add("c2");
-        _table.Columns.Add("c3");
-        _table.Columns.Add("c4");
-        _table.Columns.Add("c5");
-        _table.Columns.Add("c6");
-        _table.Rows.Add(1,"BL001","Bệnh nhân minh họa 1","000000000001","08/11/2026","150000","20000","170000");
-        ((AppGrid)_grid).BindRows(_table.DefaultView);
-        _layout8_DateTimePicker.Format = DateTimePickerFormat.Short;
-        _layout11_list = new RowActionList<DataRowView>(_grid,r=>Convert.ToInt32(r["id"]),"👁",r=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
-        _layout12_RowActionsHost.Controls.Add(_layout11_list);
+        _layout10_Button.Enabled=false;
+        _day.Value = DateTime.Today;
+        _allDays.CheckedChanged += (_, _) => _day.Enabled = !_allDays.Checked;
+        Ui.Choices(_method, ("", "Tất cả hình thức"), (TrangThai.TienMat, "Tiền mặt"), (TrangThai.ChuyenKhoan, "Chuyển khoản"));
+        Ui.RowAction<ThanhToanRow>(_grid, "xem", "👁", x =>
+        {
+            using var d = new ChiTietThanhToanDialog(x.Id);
+            d.ShowDialog(this);
+        });
     }
 
     private void _layout9_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(Find);
     }
+
     private void _layout10_Button_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        Ui.Run(() => Ui.PrintList("Danh sách bệnh nhân đã thanh toán", new[] { "Mã biên lai", "Bệnh nhân", "CCCD", "Ngày thanh toán", "Tiền khám", "Tiền thuốc", "Giảm giá", "Tổng thanh toán" }, _rows.Select(x => new[] { x.MaHoaDon, x.HoTen, x.CanCuocCongDan, x.NgayThanhToan.ToString("dd/MM/yyyy HH:mm"), Formatters.Tien(x.HoaDon.TienKham), Formatters.Tien(x.HoaDon.TienThuoc), Formatters.Tien(x.HoaDon.GiamGia), Formatters.Tien(x.HoaDon.TongThu) }), _appliedFilter));
     }
-    private RowActionList<DataRowView> _layout11_list = null!;
+
+    private void _layout11_OnKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            Execute(Find);
+            e.SuppressKeyPress = true;
+        }
+    }
 }
