@@ -1,48 +1,65 @@
-using PhongKham.Base;
 using PhongKham.Core;
+using PhongKham.Base;
 using PhongKham.Controls;
+using PhongKham.Services;
 using PhongKham.Pages.Chung.Dialogs;
+
 namespace PhongKham.Pages.Auth;
-[PageInfo(PageKeys.TrangChu,"Trang chủ",PageGroups.TongQuan,0)]
+
+[PageInfo(PageKeys.TrangChu, "Trang chủ", PageGroups.TongQuan, 0)]
 public sealed partial class TrangChuPage : BasePage
 {
-    
-    public TrangChuPage()
-    {
-        InitializeComponent();
-    }
+    private DateTime _appliedDay = DateTime.Today;
+    public TrangChuPage() { InitializeComponent(); }
+    protected override void OnPageShown() => Execute(UpdateData);
+
     protected override void BuildUI()
     {
-
-        _layout2_count.Set("3");
-        _layout3_money.Set("1.500.000 đ");
-        var values=new decimal[] {0,1,2,4,3,5,3};
-        _visits.SetData(values.Select((value,i)=>(DateTime.Today.AddDays(i-6).ToString("dd/MM"),value)));
-        _revenue.SetData(values.Select((value,i)=>(DateTime.Today.AddDays(i-6).ToString("dd/MM"),value*150000)));
+        _selectedDay.Value = DateTime.Today;
+        _dayLabel.Visible = _selectedDay.Visible = _view.Visible = false;
+        _layout1_Button.Visible = !Session.IsAdmin;
+        _printReport.Visible = false;
+        RegisterTimer(1000, (_, _) => Execute(UpdateData));
     }
 
-    private void _layout4_Button_Click(object? sender, EventArgs e)
+    private void UpdateData()
     {
-        Ui.Run(()=>{using var dialog=new TaoHoSoDialog(true);dialog.ShowDialog(this);});
+        DateTime day = _appliedDay;
+        var data = DashboardService.Get(day);
+        _patients.Caption = day == DateTime.Today ? "Lượt khám hôm nay" : "Lượt khám ngày " + day.ToString("dd/MM/yyyy");
+        _revenue.Caption = day == DateTime.Today ? "Doanh thu hôm nay" : "Doanh thu ngày " + day.ToString("dd/MM/yyyy");
+        _patients.Set(data.LuotKhamHomNay.ToString());
+        _revenue.Set(Formatters.Tien(data.DoanhThuHomNay));
+        _countChart.SetData(data.BayNgay.Select(d => (d.Ngay.ToString("dd/MM"), (decimal)d.SoLuot)));
+        _moneyChart.SetData(data.BayNgay.Select(d => (d.Ngay.ToString("dd/MM"), (decimal)d.DoanhThu)));
+        var needed = new Size(2 * Math.Max(_countChart.MinimumSize.Width, _moneyChart.MinimumSize.Width) + 24, Math.Max(_countChart.MinimumSize.Height, _moneyChart.MinimumSize.Height) + 16);
+        if (_charts.MinimumSize != needed) _charts.MinimumSize = needed;
+        if (_chartScroll.AutoScrollMinSize != needed) _chartScroll.AutoScrollMinSize = needed;
     }
-    private void _layout5_Button_Click(object? sender, EventArgs e)
+
+    private void _printReport_Click(object? sender, EventArgs e)
     {
-        Ui.Run(()=>{using var dialog=new ChiTietHoSoDialog(0);dialog.ShowDialog(this);});
+
     }
-    private void _layout6_Button_Click(object? sender, EventArgs e)
+
+    private void _view_Click(object? sender, EventArgs e) => Ui.Run(() =>
     {
-        Ui.Run(()=>{using var dialog=new LichSuKhamDialog(0);dialog.ShowDialog(this);});
-    }
-    private void _layout7_Button_Click(object? sender, EventArgs e)
+        _appliedDay = _selectedDay.Value.Date;
+        UpdateData();
+    });
+
+    private void _selectedDay_KeyDown(object? sender, KeyEventArgs e)
     {
-        Ui.Run(()=>{using var dialog=new ChiTietThanhToanDialog(0);dialog.ShowDialog(this);});
+        if (e.KeyCode != Keys.Enter) return;
+        e.SuppressKeyPress = true;
+        _view_Click(sender, EventArgs.Empty);
     }
-    private void _layout8_Button_Click(object? sender, EventArgs e)
+
+    private void _layout1_Button_Click(object? sender, EventArgs e) => Ui.Run(() => Navigator.Open(Session.CurrentUser?.VaiTro switch
     {
-        Ui.Run(()=>{using var dialog=new KetQuaXuatThuocDialog();dialog.ShowDialog(this);});
-    }
-    private void _layout9_Button_Click(object? sender, EventArgs e)
-    {
-        Ui.Run(()=>{using var dialog=new DoiMatKhauDialog();dialog.ShowDialog(this);});
-    }
+        Roles.BacSi => PageKeys.DsChoKham,
+        Roles.ThuNgan => PageKeys.ChoThanhToan,
+        Roles.DuocSi => PageKeys.XuatThuoc,
+        _ => PageKeys.TiepNhan
+    }));
 }
