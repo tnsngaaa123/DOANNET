@@ -14,7 +14,6 @@ public sealed partial class PhieuKhamPage : BasePage
     private string _saved = "";
     private System.Windows.Forms.Timer? _saveTimer;
     private string Snapshot() => string.Join("\u001f", _symptoms.Text, _diagnosis.Text, _result.Text, _advice.Text);
-    
     private void AutoSave()
     {
         _saveTimer?.Stop();
@@ -40,7 +39,7 @@ public sealed partial class PhieuKhamPage : BasePage
         }
         Navigator.Open(PageKeys.DsChoKham);
     }
-    
+
     public override bool CanLeave()
     {
         try
@@ -54,14 +53,15 @@ public sealed partial class PhieuKhamPage : BasePage
             return false;
         }
     }
-    
+
     public PhieuKhamPage()
     {
         InitializeComponent();
     }
+
     protected override void BuildUI()
     {
-     _id = (Args as LuotKhamArgs)?.PhieuKhamId ?? KhamBenhService.Active()?.Id ?? 0;
+        _id = (Args as LuotKhamArgs)?.PhieuKhamId ?? KhamBenhService.Active()?.Id ?? 0;
         if (_id == 0)
         {
             foreach (Control child in Content.Controls)
@@ -114,7 +114,7 @@ public sealed partial class PhieuKhamPage : BasePage
             t.ReadOnly = !_editable;
         _completed = data.Phieu.TrangThai is TrangThai.ChoThanhToan or TrangThai.ChoXuatThuoc or TrangThai.HoanTat;
         _layout10_complete.Enabled = _editable || _completed;
-        _layout2_rx.Enabled = false;
+        _layout2_rx.Enabled = _editable;
         if (_completed) _layout10_complete.Text = "In lại hóa đơn và đơn thuốc";
         _layout1_Button.Enabled = false;
         _layout10_complete.Text = "Hoàn tất khám";
@@ -145,5 +145,4 @@ public sealed partial class PhieuKhamPage : BasePage
     {
         Ui.Run(Complete);
     }
-    
 }

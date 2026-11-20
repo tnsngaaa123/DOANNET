@@ -1,34 +1,57 @@
 #nullable disable
-using PhongKham.Base;
+using AppDialogs = PhongKham.Core.Dialogs;
 using PhongKham.Core;
+using PhongKham.Base;
 using PhongKham.Controls;
-using PhongKham.Pages.Chung.Dialogs;
+using PhongKham.Models;
+using PhongKham.Models.Views;
+using PhongKham.Services;
+
 
 namespace PhongKham.Pages.BacSi;
 public sealed partial class KeDonPage
 {
     private System.ComponentModel.IContainer components;
-    private System.Windows.Forms.FlowLayoutPanel Toolbar;
-    private System.Windows.Forms.Panel Content;
-    private System.Windows.Forms.FlowLayoutPanel Footer;
-    private System.Windows.Forms.Label _pageTitle;
-    private System.Windows.Forms.TableLayoutPanel _layout1_form;
-    private System.Windows.Forms.TextBox _layout2_drug;
-    private System.Windows.Forms.Label _layout3_FieldLabel;
-    private System.Windows.Forms.NumericUpDown _layout4_NumericUpDown;
-    private System.Windows.Forms.Label _layout5_FieldLabel;
-    private System.Windows.Forms.TextBox _layout6_TextBox;
-    private System.Windows.Forms.Label _layout7_FieldLabel;
-    private PhongKham.Controls.AppGrid _layout8_grid;
-    private DataGridViewTextBoxColumn _layout9_Column;
-    private DataGridViewTextBoxColumn _layout10_Column;
-    private DataGridViewTextBoxColumn _layout11_Column;
-    private DataGridViewTextBoxColumn _layout12_Column;
-    private DataGridViewButtonColumn _layout13_del;
-    private System.Windows.Forms.Panel _layout14_Panel;
-    private System.Windows.Forms.TableLayoutPanel _layout15_Split;
-    private AppButton _layout16_Button;
-    private AppButton _layout17_Button;
+    private FlowLayoutPanel Toolbar;
+    private Panel Content;
+    private FlowLayoutPanel Footer;
+    private Label _pageTitle;
+    private DrugAutoCompleteBox _auto;
+    private AppGrid _grid;
+    private DataGridViewTextBoxColumn _layout1_Column;
+    private DataGridViewTextBoxColumn _layout2_Column;
+    private DataGridViewTextBoxColumn _layout3_Column;
+    private DataGridViewTextBoxColumn _layout4_Column;
+    private DataGridViewTextBoxColumn _layout5_Column;
+    private NumericUpDown _qty;
+    private NumericUpDown _days;
+    private NumericUpDown _morning;
+    private NumericUpDown _noon;
+    private NumericUpDown _afternoon;
+    private NumericUpDown _evening;
+    private ComboBox _timing;
+    private TextBox _dose;
+    private Label _chosen;
+    private Label _total;
+    private AppButton _layout6_save;
+    private AppButton _layout7_Button;
+    private TableLayoutPanel _layout8_f;
+    private Label _layout9_FieldLabel;
+    private Label _layout10_FieldLabel;
+    private Label _layout11_FieldLabel;
+    private Label _layout12_FieldLabel;
+    private Label _layout13_FieldLabel;
+    private Label _layout14_FieldLabel;
+    private Label _layout15_FieldLabel;
+    private Label _layout16_FieldLabel;
+    private Label _layout17_FieldLabel;
+    private Label _layout18_FieldLabel;
+    private FlowLayoutPanel _layout19_bar;
+    private AppButton _layout20_suggest;
+    private AppButton _layout21_add;
+    private Label _layout22_FieldLabel;
+    private Panel _layout23_Panel;
+    private TableLayoutPanel _layout24_Split;
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -36,298 +59,398 @@ public sealed partial class KeDonPage
         base.Dispose(disposing);
     }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
+
+    
     private void InitializeComponent()
     {
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-        Toolbar = new System.Windows.Forms.FlowLayoutPanel();
-        _layout16_Button = new PhongKham.Controls.AppButton();
-        _layout17_Button = new PhongKham.Controls.AppButton();
-        Content = new System.Windows.Forms.Panel();
-        _layout15_Split = new System.Windows.Forms.TableLayoutPanel();
-        _layout14_Panel = new System.Windows.Forms.Panel();
-        _layout1_form = new System.Windows.Forms.TableLayoutPanel();
-        _layout3_FieldLabel = new System.Windows.Forms.Label();
-        _layout2_drug = new System.Windows.Forms.TextBox();
-        _layout5_FieldLabel = new System.Windows.Forms.Label();
-        _layout4_NumericUpDown = new System.Windows.Forms.NumericUpDown();
-        _layout7_FieldLabel = new System.Windows.Forms.Label();
-        _layout6_TextBox = new System.Windows.Forms.TextBox();
-        _layout8_grid = new PhongKham.Controls.AppGrid();
-        _layout13_del = new System.Windows.Forms.DataGridViewButtonColumn();
-        Footer = new System.Windows.Forms.FlowLayoutPanel();
-        _pageTitle = new System.Windows.Forms.Label();
-        Toolbar.SuspendLayout();
-        Content.SuspendLayout();
-        _layout15_Split.SuspendLayout();
-        _layout14_Panel.SuspendLayout();
-        _layout1_form.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)_layout4_NumericUpDown).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)_layout8_grid).BeginInit();
+        DataGridViewCellStyle _grid_ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle();
+        DataGridViewCellStyle _grid_DefaultCellStyle = new DataGridViewCellStyle();
+        DataGridViewCellStyle _grid_AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle();
+        this.components = new System.ComponentModel.Container();
+        this.Toolbar = new FlowLayoutPanel();
+        this.Content = new Panel();
+        this.Footer = new FlowLayoutPanel();
+        this._pageTitle = new Label();
+        this._grid = new AppGrid();
+        this._layout1_Column = new DataGridViewTextBoxColumn();
+        this._layout2_Column = new DataGridViewTextBoxColumn();
+        this._layout3_Column = new DataGridViewTextBoxColumn();
+        this._layout4_Column = new DataGridViewTextBoxColumn();
+        this._layout5_Column = new DataGridViewTextBoxColumn();
+        this._qty = new NumericUpDown();
+        this._days = new NumericUpDown();
+        this._morning = new NumericUpDown();
+        this._noon = new NumericUpDown();
+        this._afternoon = new NumericUpDown();
+        this._evening = new NumericUpDown();
+        this._timing = new ComboBox();
+        this._dose = new TextBox();
+        this._chosen = new Label();
+        this._total = new Label();
+        this._layout6_save = new AppButton();
+        this._layout7_Button = new AppButton();
+        this._auto = new DrugAutoCompleteBox();
+        this._layout8_f = new TableLayoutPanel();
+        this._layout9_FieldLabel = new Label();
+        this._layout10_FieldLabel = new Label();
+        this._layout11_FieldLabel = new Label();
+        this._layout12_FieldLabel = new Label();
+        this._layout13_FieldLabel = new Label();
+        this._layout14_FieldLabel = new Label();
+        this._layout15_FieldLabel = new Label();
+        this._layout16_FieldLabel = new Label();
+        this._layout17_FieldLabel = new Label();
+        this._layout18_FieldLabel = new Label();
+        this._layout19_bar = new FlowLayoutPanel();
+        this._layout20_suggest = new AppButton();
+        this._layout21_add = new AppButton();
+        this._layout22_FieldLabel = new Label();
+        this._layout23_Panel = new Panel();
+        this._layout24_Split = new TableLayoutPanel();
+        this.Toolbar.Name = "Toolbar";
+        this.Content.Name = "Content";
+        this.Footer.Name = "Footer";
+        this._pageTitle.Name = "_pageTitle";
+        this._grid.Name = "_grid";
+        this._qty.Name = "_qty";
+        this._days.Name = "_days";
+        this._morning.Name = "_morning";
+        this._noon.Name = "_noon";
+        this._afternoon.Name = "_afternoon";
+        this._evening.Name = "_evening";
+        this._timing.Name = "_timing";
+        this._dose.Name = "_dose";
+        this._chosen.Name = "_chosen";
+        this._total.Name = "_total";
+        this._layout6_save.Name = "_layout6_save";
+        this._layout7_Button.Name = "_layout7_Button";
+        this._auto.Name = "_auto";
+        this._layout8_f.Name = "_layout8_f";
+        this._layout9_FieldLabel.Name = "_layout9_FieldLabel";
+        this._layout10_FieldLabel.Name = "_layout10_FieldLabel";
+        this._layout11_FieldLabel.Name = "_layout11_FieldLabel";
+        this._layout12_FieldLabel.Name = "_layout12_FieldLabel";
+        this._layout13_FieldLabel.Name = "_layout13_FieldLabel";
+        this._layout14_FieldLabel.Name = "_layout14_FieldLabel";
+        this._layout15_FieldLabel.Name = "_layout15_FieldLabel";
+        this._layout16_FieldLabel.Name = "_layout16_FieldLabel";
+        this._layout17_FieldLabel.Name = "_layout17_FieldLabel";
+        this._layout18_FieldLabel.Name = "_layout18_FieldLabel";
+        this._layout19_bar.Name = "_layout19_bar";
+        this._layout20_suggest.Name = "_layout20_suggest";
+        this._layout21_add.Name = "_layout21_add";
+        this._layout22_FieldLabel.Name = "_layout22_FieldLabel";
+        this._layout23_Panel.Name = "_layout23_Panel";
+        this._layout24_Split.Name = "_layout24_Split";
+        ((System.ComponentModel.ISupportInitialize)this._grid).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)this._qty).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)this._days).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)this._morning).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)this._noon).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)this._afternoon).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)this._evening).BeginInit();
+        this.Toolbar.SuspendLayout();
+        this.Content.SuspendLayout();
+        this.Footer.SuspendLayout();
+        this._layout8_f.SuspendLayout();
+        this._layout19_bar.SuspendLayout();
+        this._layout23_Panel.SuspendLayout();
+        this._layout24_Split.SuspendLayout();
         SuspendLayout();
-        // 
-        // Toolbar
-        // 
-        Toolbar.AutoScroll = true;
-        Toolbar.BackColor = System.Drawing.Color.White;
-        Toolbar.Controls.Add(_layout16_Button);
-        Toolbar.Controls.Add(_layout17_Button);
-        Toolbar.Dock = System.Windows.Forms.DockStyle.Top;
-        Toolbar.Location = new System.Drawing.Point(0, 58);
-        Toolbar.Name = "Toolbar";
-        Toolbar.Padding = new System.Windows.Forms.Padding(12, 5, 12, 5);
-        Toolbar.Size = new System.Drawing.Size(202, 56);
-        Toolbar.TabIndex = 1;
-        Toolbar.WrapContents = false;
-        // 
-        // _layout16_Button
-        // 
-        _layout16_Button.AutoSize = true;
-        _layout16_Button.BackColor = System.Drawing.Color.White;
-        _layout16_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-        _layout16_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        _layout16_Button.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        _layout16_Button.Location = new System.Drawing.Point(15, 8);
-        _layout16_Button.MinimumSize = new System.Drawing.Size(75, 36);
-        _layout16_Button.Name = "_layout16_Button";
-        _layout16_Button.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
-        _layout16_Button.Size = new System.Drawing.Size(114, 37);
-        _layout16_Button.TabIndex = 0;
-        _layout16_Button.Text = "Thêm thuốc";
-        _layout16_Button.UseVisualStyleBackColor = false;
-        _layout16_Button.Click += _layout16_Button_Click;
-        // 
-        // _layout17_Button
-        // 
-        _layout17_Button.AutoSize = true;
-        _layout17_Button.BackColor = System.Drawing.Color.White;
-        _layout17_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-        _layout17_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        _layout17_Button.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        _layout17_Button.Location = new System.Drawing.Point(135, 8);
-        _layout17_Button.MinimumSize = new System.Drawing.Size(75, 36);
-        _layout17_Button.Name = "_layout17_Button";
-        _layout17_Button.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
-        _layout17_Button.Size = new System.Drawing.Size(77, 37);
-        _layout17_Button.TabIndex = 1;
-        _layout17_Button.Text = "Trở lại";
-        _layout17_Button.UseVisualStyleBackColor = false;
-        _layout17_Button.Click += _layout17_Button_Click;
-        // 
-        // Content
-        // 
-        Content.Controls.Add(_layout15_Split);
-        Content.Dock = System.Windows.Forms.DockStyle.Fill;
-        Content.Location = new System.Drawing.Point(0, 114);
-        Content.Name = "Content";
-        Content.Padding = new System.Windows.Forms.Padding(12);
-        Content.Size = new System.Drawing.Size(202, 0);
-        Content.TabIndex = 0;
-        // 
-        // _layout15_Split
-        // 
-        _layout15_Split.ColumnCount = 2;
-        _layout15_Split.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48F));
-        _layout15_Split.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-        _layout15_Split.Controls.Add(_layout14_Panel, 0, 0);
-        _layout15_Split.Controls.Add(_layout8_grid, 1, 0);
-        _layout15_Split.Dock = System.Windows.Forms.DockStyle.Fill;
-        _layout15_Split.Location = new System.Drawing.Point(12, 12);
-        _layout15_Split.Name = "_layout15_Split";
-        _layout15_Split.RowCount = 1;
-        _layout15_Split.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-        _layout15_Split.Size = new System.Drawing.Size(178, 0);
-        _layout15_Split.TabIndex = 0;
-        // 
-        // _layout14_Panel
-        // 
-        _layout14_Panel.AutoScroll = true;
-        _layout14_Panel.Controls.Add(_layout1_form);
-        _layout14_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-        _layout14_Panel.Location = new System.Drawing.Point(3, 3);
-        _layout14_Panel.Name = "_layout14_Panel";
-        _layout14_Panel.Size = new System.Drawing.Size(51, 14);
-        _layout14_Panel.TabIndex = 0;
-        // 
-        // _layout1_form
-        // 
-        _layout1_form.AutoSize = true;
-        _layout1_form.BackColor = System.Drawing.Color.White;
-        _layout1_form.ColumnCount = 2;
-        _layout1_form.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
-        _layout1_form.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
-        _layout1_form.Controls.Add(_layout3_FieldLabel, 0, 0);
-        _layout1_form.Controls.Add(_layout2_drug, 1, 0);
-        _layout1_form.Controls.Add(_layout5_FieldLabel, 0, 1);
-        _layout1_form.Controls.Add(_layout4_NumericUpDown, 1, 1);
-        _layout1_form.Controls.Add(_layout7_FieldLabel, 0, 2);
-        _layout1_form.Controls.Add(_layout6_TextBox, 1, 2);
-        _layout1_form.Dock = System.Windows.Forms.DockStyle.Top;
-        _layout1_form.Location = new System.Drawing.Point(0, 0);
-        _layout1_form.Name = "_layout1_form";
-        _layout1_form.Padding = new System.Windows.Forms.Padding(16);
-        _layout1_form.RowCount = 3;
-        _layout1_form.RowStyles.Add(new System.Windows.Forms.RowStyle());
-        _layout1_form.RowStyles.Add(new System.Windows.Forms.RowStyle());
-        _layout1_form.RowStyles.Add(new System.Windows.Forms.RowStyle());
-        _layout1_form.Size = new System.Drawing.Size(34, 149);
-        _layout1_form.TabIndex = 0;
-        // 
-        // _layout3_FieldLabel
-        // 
-        _layout3_FieldLabel.AutoSize = true;
-        _layout3_FieldLabel.Location = new System.Drawing.Point(20, 26);
-        _layout3_FieldLabel.Margin = new System.Windows.Forms.Padding(4, 10, 8, 4);
-        _layout3_FieldLabel.Name = "_layout3_FieldLabel";
-        _layout3_FieldLabel.Size = new System.Drawing.Size(1, 19);
-        _layout3_FieldLabel.TabIndex = 0;
-        _layout3_FieldLabel.Text = "Tên thuốc";
-        // 
-        // _layout2_drug
-        // 
-        _layout2_drug.Dock = System.Windows.Forms.DockStyle.Top;
-        _layout2_drug.Location = new System.Drawing.Point(19, 22);
-        _layout2_drug.Margin = new System.Windows.Forms.Padding(3, 6, 3, 8);
-        _layout2_drug.Name = "_layout2_drug";
-        _layout2_drug.PlaceholderText = "Gõ tên thuốc";
-        _layout2_drug.Size = new System.Drawing.Size(1, 25);
-        _layout2_drug.TabIndex = 1;
-        // 
-        // _layout5_FieldLabel
-        // 
-        _layout5_FieldLabel.AutoSize = true;
-        _layout5_FieldLabel.Location = new System.Drawing.Point(20, 65);
-        _layout5_FieldLabel.Margin = new System.Windows.Forms.Padding(4, 10, 8, 4);
-        _layout5_FieldLabel.Name = "_layout5_FieldLabel";
-        _layout5_FieldLabel.Size = new System.Drawing.Size(1, 19);
-        _layout5_FieldLabel.TabIndex = 2;
-        _layout5_FieldLabel.Text = "Số lượng";
-        // 
-        // _layout4_NumericUpDown
-        // 
-        _layout4_NumericUpDown.Dock = System.Windows.Forms.DockStyle.Top;
-        _layout4_NumericUpDown.Location = new System.Drawing.Point(19, 61);
-        _layout4_NumericUpDown.Margin = new System.Windows.Forms.Padding(3, 6, 3, 8);
-        _layout4_NumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
-        _layout4_NumericUpDown.Name = "_layout4_NumericUpDown";
-        _layout4_NumericUpDown.Size = new System.Drawing.Size(1, 25);
-        _layout4_NumericUpDown.TabIndex = 3;
-        _layout4_NumericUpDown.ThousandsSeparator = true;
-        // 
-        // _layout7_FieldLabel
-        // 
-        _layout7_FieldLabel.AutoSize = true;
-        _layout7_FieldLabel.Location = new System.Drawing.Point(20, 104);
-        _layout7_FieldLabel.Margin = new System.Windows.Forms.Padding(4, 10, 8, 4);
-        _layout7_FieldLabel.Name = "_layout7_FieldLabel";
-        _layout7_FieldLabel.Size = new System.Drawing.Size(1, 19);
-        _layout7_FieldLabel.TabIndex = 4;
-        _layout7_FieldLabel.Text = "Liều dùng";
-        // 
-        // _layout6_TextBox
-        // 
-        _layout6_TextBox.Dock = System.Windows.Forms.DockStyle.Top;
-        _layout6_TextBox.Location = new System.Drawing.Point(19, 100);
-        _layout6_TextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 8);
-        _layout6_TextBox.Name = "_layout6_TextBox";
-        _layout6_TextBox.Size = new System.Drawing.Size(1, 25);
-        _layout6_TextBox.TabIndex = 5;
-        // 
-        // _layout8_grid
-        // 
-        _layout8_grid.AllowUserToAddRows = false;
-        _layout8_grid.AllowUserToDeleteRows = false;
-        dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)248)), ((int)((byte)250)), ((int)((byte)252)));
-        _layout8_grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-        _layout8_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-        _layout8_grid.BackgroundColor = System.Drawing.Color.White;
-        _layout8_grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-        dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)((byte)226)), ((int)((byte)232)), ((int)((byte)240)));
-        dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
-        dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-        dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-        dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-        _layout8_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-        _layout8_grid.ColumnHeadersHeight = 40;
-        _layout8_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { _layout13_del });
-        dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-        dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
-        dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-        dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(6);
-        dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)((byte)204)), ((int)((byte)251)), ((int)((byte)241)));
-        dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-        _layout8_grid.DefaultCellStyle = dataGridViewCellStyle3;
-        _layout8_grid.Dock = System.Windows.Forms.DockStyle.Fill;
-        _layout8_grid.EnableHeadersVisualStyles = false;
-        _layout8_grid.Location = new System.Drawing.Point(60, 3);
-        _layout8_grid.MultiSelect = false;
-        _layout8_grid.Name = "_layout8_grid";
-        _layout8_grid.ReadOnly = true;
-        _layout8_grid.RowHeadersVisible = false;
-        _layout8_grid.RowTemplate.Height = 38;
-        _layout8_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-        _layout8_grid.Size = new System.Drawing.Size(115, 14);
-        _layout8_grid.TabIndex = 1;
-        // 
-        // _layout13_del
-        // 
-        _layout13_del.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        _layout13_del.HeaderText = "";
-        _layout13_del.Name = "_layout13_del";
-        _layout13_del.ReadOnly = true;
-        _layout13_del.Text = "×";
-        _layout13_del.UseColumnTextForButtonValue = true;
-        _layout13_del.Width = 50;
-        // 
-        // Footer
-        // 
-        Footer.AutoScroll = true;
-        Footer.Dock = System.Windows.Forms.DockStyle.Bottom;
-        Footer.Location = new System.Drawing.Point(0, -64);
-        Footer.Name = "Footer";
-        Footer.Padding = new System.Windows.Forms.Padding(12, 6, 12, 6);
-        Footer.Size = new System.Drawing.Size(202, 64);
-        Footer.TabIndex = 3;
-        Footer.Visible = false;
-        Footer.WrapContents = false;
-        // 
-        // _pageTitle
-        // 
-        _pageTitle.Dock = System.Windows.Forms.DockStyle.Top;
-        _pageTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-        _pageTitle.Location = new System.Drawing.Point(0, 0);
-        _pageTitle.Name = "_pageTitle";
-        _pageTitle.Padding = new System.Windows.Forms.Padding(16, 10, 0, 0);
-        _pageTitle.Size = new System.Drawing.Size(202, 58);
-        _pageTitle.TabIndex = 2;
-        _pageTitle.Text = "Kê đơn";
-        // 
-        // KeDonPage
-        // 
-        Controls.Add(Content);
-        Controls.Add(Toolbar);
-        Controls.Add(_pageTitle);
-        Controls.Add(Footer);
-        Size = new System.Drawing.Size(202, 0);
-        Toolbar.ResumeLayout(false);
-        Toolbar.PerformLayout();
-        Content.ResumeLayout(false);
-        _layout15_Split.ResumeLayout(false);
-        _layout14_Panel.ResumeLayout(false);
-        _layout14_Panel.PerformLayout();
-        _layout1_form.ResumeLayout(false);
-        _layout1_form.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)_layout4_NumericUpDown).EndInit();
-        ((System.ComponentModel.ISupportInitialize)_layout8_grid).EndInit();
+        this.Toolbar.Dock = DockStyle.Top;
+        this.Toolbar.Height = 56;
+        this.Toolbar.AutoScroll = true;
+        this.Toolbar.WrapContents = false;
+        this.Toolbar.Padding = new Padding(12, 5, 12, 5);
+        this.Toolbar.BackColor = Color.White;
+        this.Content.Dock = DockStyle.Fill;
+        this.Content.Padding = new Padding(12);
+        this.Footer.Dock = DockStyle.Bottom;
+        this.Footer.Height = 64;
+        this.Footer.Padding = new Padding(12, 6, 12, 6);
+        this.Footer.AutoScroll = true;
+        this.Footer.WrapContents = false;
+        this.Footer.Visible = false;
+        this._pageTitle.Dock = DockStyle.Top;
+        this._pageTitle.Height = 58;
+        this._pageTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        this._pageTitle.Padding = new Padding(16, 10, 0, 0);
+        this._grid.ReadOnly = true;
+        this._grid.AllowUserToAddRows = false;
+        this._grid.AllowUserToDeleteRows = false;
+        this._grid.AutoGenerateColumns = false;
+        this._grid.MultiSelect = false;
+        this._grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        this._grid.RowHeadersVisible = false;
+        this._grid.Dock = DockStyle.Fill;
+        this._grid.BackgroundColor = Color.White;
+        this._grid.BorderStyle = BorderStyle.None;
+        this._grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        this._grid.EnableHeadersVisualStyles = false;
+        this._grid.ColumnHeadersHeight = 40;
+        _grid_ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(226, 232, 240);
+        _grid_ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(15, 23, 42);
+        this._grid.ColumnHeadersDefaultCellStyle = _grid_ColumnHeadersDefaultCellStyle;
+        _grid_DefaultCellStyle.Padding = new Padding(6);
+        _grid_DefaultCellStyle.SelectionBackColor = Color.FromArgb(204, 251, 241);
+        _grid_DefaultCellStyle.SelectionForeColor = Color.FromArgb(15, 23, 42);
+        this._grid.DefaultCellStyle = _grid_DefaultCellStyle;
+        this._grid.RowTemplate.Height = 38;
+        _grid_AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+        this._grid.AlternatingRowsDefaultCellStyle = _grid_AlternatingRowsDefaultCellStyle;
+        this._layout1_Column.DataPropertyName = "TenThuoc";
+        this._layout1_Column.Name = "_layout1_Column";
+        this._layout1_Column.HeaderText = "Thuốc";
+        this._layout1_Column.MinimumWidth = 65;
+        this._layout1_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout2_Column.DataPropertyName = "SoLuong";
+        this._layout2_Column.Name = "_layout2_Column";
+        this._layout2_Column.HeaderText = "Số lượng";
+        this._layout2_Column.MinimumWidth = 65;
+        this._layout2_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout3_Column.DataPropertyName = "DonGia";
+        this._layout3_Column.Name = "_layout3_Column";
+        this._layout3_Column.HeaderText = "Đơn giá";
+        this._layout3_Column.MinimumWidth = 65;
+        this._layout3_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout4_Column.DataPropertyName = "LieuDung";
+        this._layout4_Column.Name = "_layout4_Column";
+        this._layout4_Column.HeaderText = "Liều dùng";
+        this._layout4_Column.MinimumWidth = 65;
+        this._layout4_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout5_Column.DataPropertyName = "ThanhTien";
+        this._layout5_Column.Name = "_layout5_Column";
+        this._layout5_Column.HeaderText = "Thành tiền";
+        this._layout5_Column.MinimumWidth = 65;
+        this._layout5_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._qty.Minimum = 0;
+        this._qty.Maximum = 1000000;
+        this._qty.DecimalPlaces = 0;
+        this._qty.Increment = 1m;
+        this._qty.ThousandsSeparator = true;
+        this._qty.Height = 32;
+        this._days.Minimum = 0;
+        this._days.Maximum = 365;
+        this._days.DecimalPlaces = 0;
+        this._days.Increment = 1m;
+        this._days.ThousandsSeparator = true;
+        this._days.Height = 32;
+        this._morning.Minimum = 0;
+        this._morning.Maximum = 10000;
+        this._morning.DecimalPlaces = 1;
+        this._morning.Increment = 0.5m;
+        this._morning.ThousandsSeparator = true;
+        this._morning.Height = 32;
+        this._noon.Minimum = 0;
+        this._noon.Maximum = 10000;
+        this._noon.DecimalPlaces = 1;
+        this._noon.Increment = 0.5m;
+        this._noon.ThousandsSeparator = true;
+        this._noon.Height = 32;
+        this._afternoon.Minimum = 0;
+        this._afternoon.Maximum = 10000;
+        this._afternoon.DecimalPlaces = 1;
+        this._afternoon.Increment = 0.5m;
+        this._afternoon.ThousandsSeparator = true;
+        this._afternoon.Height = 32;
+        this._evening.Minimum = 0;
+        this._evening.Maximum = 10000;
+        this._evening.DecimalPlaces = 1;
+        this._evening.Increment = 0.5m;
+        this._evening.ThousandsSeparator = true;
+        this._evening.Height = 32;
+        this._timing.DropDownStyle = ComboBoxStyle.DropDownList;
+        this._dose.Multiline = true;
+        this._dose.Height = 75;
+        this._dose.ScrollBars = ScrollBars.Vertical;
+        this._chosen.AutoSize = true;
+        this._total.AutoSize = true;
+        this.Footer.Visible = true;
+        this._layout6_save.Text = "Lưu đơn";
+        this._layout6_save.BackColor = Color.FromArgb(22, 163, 74);
+        this._layout6_save.ForeColor = Color.White;
+        this.Toolbar.Controls.Add(this._layout6_save);
+        this._layout6_save.Click += _layout6_save_Click;
+        this._layout7_Button.Text = "Trở lại";
+        this._layout7_Button.BackColor = Color.White;
+        this._layout7_Button.ForeColor = Color.FromArgb(15, 23, 42);
+        this.Toolbar.Controls.Add(this._layout7_Button);
+        this._layout7_Button.Click += _layout7_Button_Click;
+        this._morning.Value = 1;
+        this._evening.Value = 1;
+        this._days.Value = 3;
+        this._layout8_f.Dock = DockStyle.Top;
+        this._layout8_f.AutoSize = true;
+        this._layout8_f.ColumnCount = 2;
+        this._layout8_f.Padding = new Padding(16);
+        this._layout8_f.BackColor = Color.White;
+        this._layout8_f.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32));
+        this._layout8_f.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68));
+        this._layout9_FieldLabel.Text = "Tìm thuốc";
+        this._layout9_FieldLabel.AutoSize = true;
+        this._layout9_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout9_FieldLabel, 0, 0);
+        this._auto.Dock = DockStyle.Top;
+        this._auto.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._auto, 1, 0);
+        this._layout8_f.RowCount = 1;
+        this._layout10_FieldLabel.Text = "Thuốc đã chọn";
+        this._layout10_FieldLabel.AutoSize = true;
+        this._layout10_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout10_FieldLabel, 0, 1);
+        this._chosen.Dock = DockStyle.Top;
+        this._chosen.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._chosen, 1, 1);
+        this._layout8_f.RowCount = 2;
+        this._layout11_FieldLabel.Text = "Sáng";
+        this._layout11_FieldLabel.AutoSize = true;
+        this._layout11_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout11_FieldLabel, 0, 2);
+        this._morning.Dock = DockStyle.Top;
+        this._morning.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._morning, 1, 2);
+        this._layout8_f.RowCount = 3;
+        this._layout12_FieldLabel.Text = "Trưa";
+        this._layout12_FieldLabel.AutoSize = true;
+        this._layout12_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout12_FieldLabel, 0, 3);
+        this._noon.Dock = DockStyle.Top;
+        this._noon.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._noon, 1, 3);
+        this._layout8_f.RowCount = 4;
+        this._layout13_FieldLabel.Text = "Chiều";
+        this._layout13_FieldLabel.AutoSize = true;
+        this._layout13_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout13_FieldLabel, 0, 4);
+        this._afternoon.Dock = DockStyle.Top;
+        this._afternoon.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._afternoon, 1, 4);
+        this._layout8_f.RowCount = 5;
+        this._layout14_FieldLabel.Text = "Tối";
+        this._layout14_FieldLabel.AutoSize = true;
+        this._layout14_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout14_FieldLabel, 0, 5);
+        this._evening.Dock = DockStyle.Top;
+        this._evening.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._evening, 1, 5);
+        this._layout8_f.RowCount = 6;
+        this._layout15_FieldLabel.Text = "Số ngày";
+        this._layout15_FieldLabel.AutoSize = true;
+        this._layout15_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout15_FieldLabel, 0, 6);
+        this._days.Dock = DockStyle.Top;
+        this._days.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._days, 1, 6);
+        this._layout8_f.RowCount = 7;
+        this._layout16_FieldLabel.Text = "Thời điểm";
+        this._layout16_FieldLabel.AutoSize = true;
+        this._layout16_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout16_FieldLabel, 0, 7);
+        this._timing.Dock = DockStyle.Top;
+        this._timing.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._timing, 1, 7);
+        this._layout8_f.RowCount = 8;
+        this._layout17_FieldLabel.Text = "Số lượng";
+        this._layout17_FieldLabel.AutoSize = true;
+        this._layout17_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout17_FieldLabel, 0, 8);
+        this._qty.Dock = DockStyle.Top;
+        this._qty.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._qty, 1, 8);
+        this._layout8_f.RowCount = 9;
+        this._layout18_FieldLabel.Text = "Liều dùng";
+        this._layout18_FieldLabel.AutoSize = true;
+        this._layout18_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout18_FieldLabel, 0, 9);
+        this._dose.Dock = DockStyle.Top;
+        this._dose.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._dose, 1, 9);
+        this._layout8_f.RowCount = 10;
+        this._layout19_bar.AutoSize = true;
+        this._layout20_suggest.Text = "Gợi ý số lượng / liều";
+        this._layout20_suggest.BackColor = Color.White;
+        this._layout20_suggest.ForeColor = Color.FromArgb(15, 23, 42);
+        this._layout19_bar.Controls.Add(this._layout20_suggest);
+        this._layout20_suggest.Click += _layout20_suggest_Click;
+        this._layout21_add.Text = "Thêm / cập nhật thuốc";
+        this._layout21_add.BackColor = Color.FromArgb(22, 163, 74);
+        this._layout21_add.ForeColor = Color.White;
+        this._layout19_bar.Controls.Add(this._layout21_add);
+        this._layout21_add.Click += _layout21_add_Click;
+        this._layout22_FieldLabel.Text = "";
+        this._layout22_FieldLabel.AutoSize = true;
+        this._layout22_FieldLabel.Margin = new Padding(4, 10, 8, 4);
+        this._layout8_f.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        this._layout8_f.Controls.Add(this._layout22_FieldLabel, 0, 10);
+        this._layout19_bar.Dock = DockStyle.Top;
+        this._layout19_bar.Margin = new Padding(3, 6, 3, 8);
+        this._layout8_f.Controls.Add(this._layout19_bar, 1, 10);
+        this._layout8_f.RowCount = 11;
+        this._layout23_Panel.Dock = DockStyle.Fill;
+        this._layout23_Panel.AutoScroll = true;
+        this._layout23_Panel.Controls.Add(this._layout8_f);
+        this._layout24_Split.Dock = DockStyle.Fill;
+        this._layout24_Split.ColumnCount = 2;
+        this._layout24_Split.RowCount = 1;
+        this._layout24_Split.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58));
+        this._layout24_Split.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42));
+        this._grid.Dock = DockStyle.Fill;
+        this._layout23_Panel.Dock = DockStyle.Fill;
+        this._layout24_Split.Controls.Add(this._grid, 0, 0);
+        this._layout24_Split.Controls.Add(this._layout23_Panel, 1, 0);
+        this.Content.Controls.Add(this._layout24_Split);
+        this.Footer.Controls.Add(this._total);
+        this.Name = "KeDonPage";
+        this._pageTitle.Text = "Kê đơn";
+        Controls.Add(this.Content);
+        Controls.Add(this.Toolbar);
+        Controls.Add(this._pageTitle);
+        Controls.Add(this.Footer);
+        Size = new Size(1100, 720);
+        this._grid.Columns.AddRange(new DataGridViewColumn[] { this._layout1_Column, this._layout2_Column, this._layout3_Column, this._layout4_Column, this._layout5_Column });
+        this._grid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        this._grid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        this._grid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        this._grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        this._grid.RowTemplate.MinimumHeight = 38;
+        this._layout1_Column.MinimumWidth = 130;
+        this._layout1_Column.FillWeight = 140;
+        this._layout4_Column.MinimumWidth = 220;
+        this._layout4_Column.FillWeight = 210;
+        this._dose.Height = 110;
+        this._dose.WordWrap = true;
+        ((System.ComponentModel.ISupportInitialize)this._grid).EndInit();
+        ((System.ComponentModel.ISupportInitialize)this._qty).EndInit();
+        ((System.ComponentModel.ISupportInitialize)this._days).EndInit();
+        ((System.ComponentModel.ISupportInitialize)this._morning).EndInit();
+        ((System.ComponentModel.ISupportInitialize)this._noon).EndInit();
+        ((System.ComponentModel.ISupportInitialize)this._afternoon).EndInit();
+        ((System.ComponentModel.ISupportInitialize)this._evening).EndInit();
+        this._layout24_Split.ResumeLayout(false);
+        this._layout24_Split.PerformLayout();
+        this._layout23_Panel.ResumeLayout(false);
+        this._layout23_Panel.PerformLayout();
+        this._layout19_bar.ResumeLayout(false);
+        this._layout19_bar.PerformLayout();
+        this._layout8_f.ResumeLayout(false);
+        this._layout8_f.PerformLayout();
+        this.Footer.ResumeLayout(false);
+        this.Footer.PerformLayout();
+        this.Content.ResumeLayout(false);
+        this.Content.PerformLayout();
+        this.Toolbar.ResumeLayout(false);
+        this.Toolbar.PerformLayout();
         ResumeLayout(false);
+        PerformLayout();
     }
 }
