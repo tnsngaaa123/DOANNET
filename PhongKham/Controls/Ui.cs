@@ -2,6 +2,8 @@ using System.ComponentModel;
 using System.Drawing.Printing;
 using PhongKham.Core;
 using PhongKham.Models.Views;
+using PhongKham.Printing;
+using PhongKham.Services;
 
 namespace PhongKham.Controls;
 public static class Ui
@@ -262,9 +264,29 @@ public static class Ui
         return b;
     }
 
-    public static void Print(PrintDocument document) => throw new NghiepVuException("Phần in được nối ở đợt sau.");
-    public static bool PrintAndArchive(params PrintDocument[] documents) => throw new NghiepVuException("Phần in được nối ở đợt sau.");
-    public static void PrintList(string title, string[] columns, IEnumerable<string[]> rows, string filter="") => throw new NghiepVuException("Phần in được nối ở đợt sau.");
+    public static void Print(PrintDocument document) => ShowPrintDialog(new[] { document });
+
+    public static bool PrintAndArchive(params PhongKhamPrintDocument[] documents) => ShowPrintDialog(documents);
+
+    private static bool ShowPrintDialog(PrintDocument[] documents)
+    {
+        try
+        {
+            using var dialog = new PhongKham.Pages.Chung.Dialogs.InTaiLieuDialog(documents);
+            return dialog.ShowDialog(System.Windows.Forms.Form.ActiveForm) == DialogResult.OK;
+        }
+        catch (Exception e) when (e is NghiepVuException or InvalidPrinterException or Win32Exception or System.Runtime.InteropServices.ExternalException or IOException or UnauthorizedAccessException)
+        {
+            Dialogs.Warning("Không mở được bản in: " + e.Message);
+            return false;
+        }
+        finally
+        {
+            foreach (var document in documents) document.Dispose();
+        }
+    }
+
+    public static void PrintList(string title, string[] columns, IEnumerable<string[]> rows, string filter = "") => Print(new DanhSachPrintDocument(new DanhSachPrintData { TieuDe = title, TenPhongKham = CauHinhService.Get("TenPhongKham"), DiaChi = CauHinhService.Get("DiaChi"), SoDienThoai = CauHinhService.Get("SoDienThoai"), NguoiLap = Session.CurrentUser?.HoTen ?? "", Cot = columns, Dong = rows.ToList(), MoTaBoLoc = filter }));
     public static Color WarningColor(MucCanhBao value) => value switch
     {
         MucCanhBao.Red => Color.FromArgb(254, 202, 202),
