@@ -6,14 +6,14 @@ using PhongKham.Models;
 using PhongKham.Models.Views;
 using PhongKham.Services;
 
-[PageInfo(PageKeys.KeDon, "Kê đơn", PageGroups.DangKham, 30, Roles.BacSi)]
+namespace PhongKham.Pages.BacSi;
+[PageInfo(PageKeys.KeDon, "Kê đơn", PageGroups.DangKham, 30, Roles.BacSi, ShowInMenu = false)]
 public sealed partial class KeDonPage : BasePage
 {
     private int _id;
     private bool _loading = true, _dirty, _editorDirty, _editable;
     private List<DongDonThuocRow> _rows = new();
     private GoiYThuoc? _drug;
-
     private ChiTietDonThuoc Input() => new()
     {
         ThuocId = _drug?.ThuocId ?? 0,
@@ -27,7 +27,6 @@ public sealed partial class KeDonPage : BasePage
         LieuDung = _dose.Text,
         DonGia = _drug?.GiaBan ?? 0
     };
-
     private void SuggestDose()
     {
         var x = Input();
@@ -111,9 +110,8 @@ public sealed partial class KeDonPage : BasePage
             Save(false);
         Navigator.Open(PageKeys.PhieuKham, new LuotKhamArgs(_id));
     }
-    
+
     public override bool CanLeave() => (!_dirty && !_editorDirty) || AppDialogs.Confirm("Bỏ thay đổi đơn thuốc chưa lưu?");
-    
     public KeDonPage()
     {
         InitializeComponent();
@@ -148,15 +146,16 @@ public sealed partial class KeDonPage : BasePage
         });
         Ui.Choices(_timing, (TrangThai.SauAn, "Sau ăn"), (TrangThai.TruocAn, "Trước ăn"), (TrangThai.TrongBuaAn, "Trong bữa ăn"), (TrangThai.KhongQuyDinh, "Không quy định"));
         foreach (var n in new[]
-                 {
-                     _qty,
-                     _days,
-                     _morning,
-                     _noon,
-                     _afternoon,
-                     _evening
-                 }
-                )
+        {
+            _qty,
+            _days,
+            _morning,
+            _noon,
+            _afternoon,
+            _evening
+        }
+
+        )
             n.ValueChanged += (_, _) =>
             {
                 if (!_loading)
@@ -178,25 +177,24 @@ public sealed partial class KeDonPage : BasePage
         _layout6_save.Enabled = _layout21_add.Enabled = _layout20_suggest.Enabled = _editable;
         _auto.Enabled = _editable;
         foreach (var c in new Control[]
-                 {
-                     _qty,
-                     _days,
-                     _morning,
-                     _noon,
-                     _afternoon,
-                     _evening,
-                     _timing,
-                     _dose
-                 }
-                 )
+        {
+            _qty,
+            _days,
+            _morning,
+            _noon,
+            _afternoon,
+            _evening,
+            _timing,
+            _dose
+        }
+
+        )
             c.Enabled = _editable;
         _rows = data.CacThuoc;
         Bind();
         _loading = false;
         _dirty = _editorDirty = false;
     }
-    
-
 
     private void _layout6_save_Click(object? sender, EventArgs e)
     {
