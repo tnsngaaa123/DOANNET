@@ -18,7 +18,7 @@ public sealed partial class TrangChuPage : BasePage
         _selectedDay.Value = DateTime.Today;
         _dayLabel.Visible = _selectedDay.Visible = _view.Visible = false;
         _layout1_Button.Visible = !Session.IsAdmin;
-        _printReport.Visible = false;
+        _printReport.Visible = Session.HasRole(Roles.LeTan, Roles.ThuNgan);
         RegisterTimer(1000, (_, _) => Execute(UpdateData));
     }
 
@@ -37,10 +37,11 @@ public sealed partial class TrangChuPage : BasePage
         if (_chartScroll.AutoScrollMinSize != needed) _chartScroll.AutoScrollMinSize = needed;
     }
 
-    private void _printReport_Click(object? sender, EventArgs e)
+    private void _printReport_Click(object? sender, EventArgs e) => Ui.Run(() =>
     {
-
-    }
+        using var dialog = new BaoCaoDialog(_appliedDay);
+        dialog.ShowDialog(this);
+    });
 
     private void _view_Click(object? sender, EventArgs e) => Ui.Run(() =>
     {
@@ -63,3 +64,4 @@ public sealed partial class TrangChuPage : BasePage
         _ => PageKeys.TiepNhan
     }));
 }
+    
