@@ -27,7 +27,6 @@ public sealed partial class ThuocSapHetHangPage : BasePage
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
-        _layout5_Button.Enabled=false;
         Ui.Choices(_filter, ("", "Tất cả"), ("5000", "Danh sách thuốc có số lượng dưới 5000"), ("3000", "Danh sách thuốc có số lượng dưới 3000"), ("1000", "Danh sách thuốc có số lượng dưới 1000"));
         _grid.RowPrePaint += (_, e) =>
         {

@@ -3,6 +3,7 @@ using PhongKham.Base;
 using PhongKham.Controls;
 using PhongKham.Models.Views;
 using PhongKham.Services;
+using PhongKham.Printing;
 
 namespace PhongKham.Pages.Chung.Dialogs;
 public sealed partial class ChiTietThanhToanDialog : BaseDialog
@@ -14,7 +15,6 @@ public sealed partial class ChiTietThanhToanDialog : BaseDialog
         InitializeComponent();
         if (DesignTimeSupport.IsDesignMode(this))
             return;
-        _exportReceipt.Enabled=false;
         Ui.ConfigureGridFormatting(_historyGrid);
         Ui.ConfigureGridFormatting(_medicines);
         Ui.RowAction<ThanhToanRow>(_historyGrid, "xem", "👁", row => ViewInvoice(row.Id));
@@ -56,8 +56,8 @@ public sealed partial class ChiTietThanhToanDialog : BaseDialog
 
     private void _exportReceipt_Click(object? sender, EventArgs e)
     {
-
-}
+        Ui.Run(() => Ui.Print(new BienLaiPrintDocument(InAnService.Receipt(_bill))));
+    }
     private void OkButton_Click(object? sender, EventArgs e)
     {
         SaveAndClose();

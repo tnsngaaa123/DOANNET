@@ -3,6 +3,7 @@ using PhongKham.Core;
 using PhongKham.Base;
 using PhongKham.Controls;
 using PhongKham.Services;
+using PhongKham.Printing;
 
 namespace PhongKham.Pages.ThuNgan;
 [PageInfo(PageKeys.ThanhToan, "Thanh toán", PageGroups.ThuNgan, 20, Roles.ThuNgan, ShowInMenu = false)]
@@ -25,7 +26,7 @@ public sealed partial class ThanhToanPage : BasePage
         if (!AppDialogs.Confirm("Đã nhận đủ " + Formatters.Tien(total.TongThu) + " gồm tiền khám và tiền thuốc?"))
             return;
         int bill = ThanhToanService.Pay(_id, (long)_fee.Value, _discount.Value, _percent.Checked, Ui.Value(_method), (long)_given.Value);
-
+        Ui.Print(new BienLaiPrintDocument(InAnService.Receipt(bill)));
         Navigator.Open(PageKeys.ChoThanhToan);
     }
 
