@@ -16,7 +16,6 @@ public sealed partial class TrangChuPage : BasePage
     protected override void BuildUI()
     {
         _selectedDay.Value = DateTime.Today;
-        _dayLabel.Visible = _selectedDay.Visible = _view.Visible = false;
         _layout1_Button.Visible = !Session.IsAdmin;
         _printReport.Visible = Session.HasRole(Roles.LeTan, Roles.ThuNgan);
         RegisterTimer(1000, (_, _) => Execute(UpdateData));
