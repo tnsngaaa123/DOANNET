@@ -3,6 +3,7 @@ using PhongKham.Base;
 using PhongKham.Controls;
 using PhongKham.Models.Views;
 using PhongKham.Services;
+using PhongKham.Printing;
 using PhongKham.Pages.Chung.Dialogs;
 
 namespace PhongKham.Pages.LeTan;
@@ -19,10 +20,10 @@ public sealed partial class TiepNhanPage : BasePage
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
-        _layout10_list = new RowActionList<LuotKhamRow>(_grid, x => x.Id, "Xem số khám", x =>
+        _layout10_list = new RowActionList<LuotKhamRow>(_grid, x => x.Id, "Cấp và in số khám", x =>
         {
             var ticket = TiepNhanService.Issue(x.Id);
-            PhongKham.Core.Dialogs.Info("STT: " + ticket.LuotKham.Phieu.SoThuTu);
+            Ui.Print(new PhieuSoPrintDocument(new[] { ticket }));
             Find();
         }, x => x.Phieu.TrangThai == TrangThai.ChoKham);
         _layout11_RowActionsHost.Controls.Add(_layout10_list);

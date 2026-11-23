@@ -4,6 +4,7 @@ using PhongKham.Base;
 using PhongKham.Controls;
 using PhongKham.Services;
 using PhongKham.Pages.Chung.Dialogs;
+using PhongKham.Printing;
 
 namespace PhongKham.Pages.BacSi;
 [PageInfo(PageKeys.PhieuKham, "Phiếu khám", PageGroups.DangKham, 20, Roles.BacSi)]
@@ -27,7 +28,7 @@ public sealed partial class PhieuKhamPage : BasePage
     {
         if (!_completed)
         {
-            if (!AppDialogs.Confirm("Hoàn tất phiếu khám và chuyển bệnh nhân sang chờ thanh toán?"))
+            if (!AppDialogs.Confirm("Hoàn tất phiếu khám và mở bản in hóa đơn, đơn thuốc cho bệnh nhân"))
                 return;
             _saveTimer?.Stop();
             KhamBenhService.Save(_id, _symptoms.Text, _diagnosis.Text, _result.Text, _advice.Text, true);
@@ -37,7 +38,11 @@ public sealed partial class PhieuKhamPage : BasePage
             foreach (var editor in new[] { _symptoms, _diagnosis, _result, _advice }) editor.ReadOnly = true;
             _layout2_rx.Enabled = false;
         }
-        Navigator.Open(PageKeys.DsChoKham);
+        var data = InAnService.CompletedVisit(_id);
+        if (Ui.PrintAndArchive(new HoaDonKhamPrintDocument(data), new DonThuocPrintDocument(data)))
+            Navigator.Open(PageKeys.DsChoKham);
+        else
+            _layout10_complete.Text = "In lại hóa đơn và đơn thuốc";
     }
 
     public override bool CanLeave()
@@ -117,7 +122,6 @@ public sealed partial class PhieuKhamPage : BasePage
         _layout2_rx.Enabled = _editable;
         if (_completed) _layout10_complete.Text = "In lại hóa đơn và đơn thuốc";
         _layout1_Button.Enabled = false;
-        _layout10_complete.Text = "Hoàn tất khám";
         _saved = Snapshot();
         _loaded = true;
     }
