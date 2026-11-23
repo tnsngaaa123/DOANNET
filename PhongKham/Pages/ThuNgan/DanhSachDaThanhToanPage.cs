@@ -27,7 +27,6 @@ public sealed partial class DanhSachDaThanhToanPage : BasePage
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
-        _layout10_Button.Enabled=false;
         _day.Value = DateTime.Today;
         _allDays.CheckedChanged += (_, _) => _day.Enabled = !_allDays.Checked;
         Ui.Choices(_method, ("", "Tất cả hình thức"), (TrangThai.TienMat, "Tiền mặt"), (TrangThai.ChuyenKhoan, "Chuyển khoản"));

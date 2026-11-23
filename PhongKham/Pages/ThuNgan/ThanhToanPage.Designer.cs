@@ -4,6 +4,7 @@ using PhongKham.Core;
 using PhongKham.Base;
 using PhongKham.Controls;
 using PhongKham.Services;
+using PhongKham.Printing;
 
 namespace PhongKham.Pages.ThuNgan;
 public sealed partial class ThanhToanPage

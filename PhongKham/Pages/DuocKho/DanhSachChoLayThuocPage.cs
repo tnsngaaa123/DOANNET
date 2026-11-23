@@ -1,43 +1,37 @@
-using System.Data;
-using PhongKham.Base;
+using AppDialogs = PhongKham.Core.Dialogs;
 using PhongKham.Core;
+using PhongKham.Base;
 using PhongKham.Controls;
+using PhongKham.Models.Views;
+using PhongKham.Services;
 using PhongKham.Pages.Chung.Dialogs;
+
 namespace PhongKham.Pages.DuocKho;
 [PageInfo(PageKeys.XuatThuoc, "Danh sách chờ lấy thuốc", PageGroups.DuocKho, 10, Roles.DuocSi)]
 public sealed partial class DanhSachChoLayThuocPage : BasePage
 {
-    private readonly DataTable _table=new();
-    
-    
-    
-    
-    private void Find()
-    {
-        var rows=_table.DefaultView.Cast<DataRowView>().Where(row=>row.Row.ItemArray.Any(value=>Convert.ToString(value)?.Contains(_search.Text,StringComparison.CurrentCultureIgnoreCase)==true));
-        
-        var filtered=_table.Clone();
-        foreach(var row in rows)filtered.ImportRow(row.Row);
-        ((AppGrid)_grid).BindRows(filtered.DefaultView);
-    }
+    protected override void OnPageShown() => Execute(LoadData);
+    private void LoadData() => Ui.BindKeep(_grid, XuatThuocService.Waiting(), x => x.Id);
     public DanhSachChoLayThuocPage()
     {
         InitializeComponent();
     }
+
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
-        _table.Columns.Add("id",typeof(int));
-        _table.Columns.Add("c0");
-        _table.Columns.Add("c1");
-        _table.Columns.Add("c2");
-        _table.Columns.Add("c3");
-        _table.Rows.Add(1,"Bệnh nhân minh họa 1","000000000001","01/01/1995","Bác sĩ minh họa");
-        ((AppGrid)_grid).BindRows(_table.DefaultView);
-        _layout5_list = new RowActionList<DataRowView>(_grid,r=>Convert.ToInt32(r["id"]),"Xuất thuốc",r=>{MessageBox.Show("Chức năng đang được hoàn thiện.","Phòng khám");});
+        _layout5_list = new RowActionList<LuotKhamRow>(_grid, x => x.Id, "Xuất thuốc", x =>
+        {
+            if (!AppDialogs.Confirm("Xuất thuốc cho " + x.HoTen + "?"))
+                return;
+            var result = XuatThuocService.Dispense(x.Id);
+            using var d = new KetQuaXuatThuocDialog(x.HoTen, result);
+            d.ShowDialog(this);
+            LoadData();
+        });
         _layout6_RowActionsHost.Controls.Add(_layout5_list);
+        RegisterTimer(2000, (_, _) => Execute(LoadData));
     }
 
-
-    private RowActionList<DataRowView> _layout5_list = null!;
+    private RowActionList<LuotKhamRow> _layout5_list = null!;
 }

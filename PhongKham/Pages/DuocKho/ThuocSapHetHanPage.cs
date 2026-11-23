@@ -27,7 +27,6 @@ public sealed partial class ThuocSapHetHanPage : BasePage
     protected override void BuildUI()
     {
         Ui.ConfigureGridFormatting(_grid);
-        _layout7_Button.Enabled=false;
         Ui.Choices(_filter, (nameof(LocHanDung.TatCa), "Tất cả"), (nameof(LocHanDung.DaHetHan), "Thuốc đã hết hạn"), (nameof(LocHanDung.DuoiBaThang), "Thuốc còn hạn dưới 3 tháng"), (nameof(LocHanDung.DuoiSauThang), "Thuốc còn hạn dưới 6 tháng"));
         _grid.RowPrePaint += (_, e) =>
         {
