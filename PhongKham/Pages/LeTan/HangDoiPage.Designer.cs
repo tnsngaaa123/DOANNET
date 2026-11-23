@@ -8,7 +8,6 @@ using PhongKham.Models.Views;
 using PhongKham.Services;
 using PhongKham.Printing;
 
-
 namespace PhongKham.Pages.LeTan;
 public sealed partial class HangDoiPage
 {
@@ -18,6 +17,7 @@ public sealed partial class HangDoiPage
     private FlowLayoutPanel Footer;
     private Label _pageTitle;
     private TextBox _search;
+    private DateTimePicker _day;
     private ComboBox _doctor;
     private AppGrid _grid;
     private DataGridViewTextBoxColumn _layout1_Column;
@@ -39,7 +39,7 @@ public sealed partial class HangDoiPage
             this.components?.Dispose();
         base.Dispose(disposing);
     }
-    
+
     private void InitializeComponent()
     {
         DataGridViewCellStyle _grid_ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle();
@@ -236,4 +236,5 @@ public sealed partial class HangDoiPage
         this.Toolbar.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
+    }
 }
