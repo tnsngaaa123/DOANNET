@@ -1,42 +1,50 @@
-using System.Data;
-using PhongKham.Base;
 using PhongKham.Core;
+using PhongKham.Base;
 using PhongKham.Controls;
-using PhongKham.Pages.Chung.Dialogs;
+using PhongKham.Services;
+
 namespace PhongKham.Pages.LeTan;
-[PageInfo(PageKeys.PhongCho, "Phòng chờ", PageGroups.TiepNhan, 40, Roles.LeTan)]
+
+[PageInfo(PageKeys.PhongCho, "Phòng chờ", PageGroups.TiepNhan, 40, Roles.LeTan, Roles.BacSi, Roles.ThuNgan, Roles.DuocSi)]
 public sealed partial class PhongChoForm : BaseForm
 {
-    private readonly DataTable _table=new();
-    
-    
-    
-    
-    private void Find()
-    {
-        var rows=_table.DefaultView.Cast<DataRowView>().Where(row=>row.Row.ItemArray.Any(value=>Convert.ToString(value)?.Contains(_search.Text,StringComparison.CurrentCultureIgnoreCase)==true));
-        
-        var filtered=_table.Clone();
-        foreach(var row in rows)filtered.ImportRow(row.Row);
-        ((AppGrid)_grid).BindRows(filtered.DefaultView);
-    }
+    private readonly System.Windows.Forms.Timer _timer = new() { Interval = 1000 };
     public PhongChoForm()
     {
         InitializeComponent();
-        if (!PhongKham.Core.DesignTimeSupport.IsDesignMode(this)) InitializeRuntime();
-    }
-    private void InitializeRuntime()
-    {
+        if (DesignTimeSupport.IsDesignMode(this)) return;
         Ui.ConfigureGridFormatting(_grid);
-        _table.Columns.Add("id",typeof(int));
-        _table.Columns.Add("c0");
-        _table.Columns.Add("c1");
-        _table.Columns.Add("c2");
-        _table.Columns.Add("c3");
-        _table.Rows.Add(1,"1","Bệnh nhân minh họa 1","01/01/1995","Không");
-        _table.Rows.Add(2,"2","Bệnh nhân minh họa 2","02/02/1990","Có");
-        ((AppGrid)_grid).BindRows(_table.DefaultView);
+        Ui.ConfigureGridFormatting(_paymentGrid);
+        Ui.ConfigureGridFormatting(_pickupGrid);
+        _timer.Tick += (_, _) => Ui.Run(UpdateData);
+        Shown += (_, _) =>
+        {
+            var second = Screen.AllScreens.FirstOrDefault(s => !s.Primary);
+            if (second is not null)
+            {
+                StartPosition = FormStartPosition.Manual;
+                Bounds = second.WorkingArea;
+            }
+            else WindowState = FormWindowState.Maximized;
+            Ui.Run(UpdateData);
+            _timer.Start();
+        };
     }
 
+    private void UpdateData()
+    {
+        var data = PhongChoService.Get();
+        _number.Text = data.ChoKham.SoDangKham;
+        _paymentNumber.Text = data.ChoThanhToan.SoDangKham;
+        _pickupNumber.Text = data.ChoLayThuoc.SoDangKham;
+        Ui.Bind(_grid, data.ChoKham.DangCho);
+        Ui.Bind(_paymentGrid, data.ChoThanhToan.DangCho);
+        Ui.Bind(_pickupGrid, data.ChoLayThuoc.DangCho);
+    }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing) { _timer.Stop(); _timer.Dispose(); components?.Dispose(); }
+        base.Dispose(disposing);
+    }
 }
