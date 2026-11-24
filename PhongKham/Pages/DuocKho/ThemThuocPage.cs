@@ -15,8 +15,14 @@ public sealed partial class ThemThuocPage : BasePage
     private List<ImportThuocRow> _excelRows = new();
     private void LoadExcel(string path)
     {
-        _excelStatus.Text=Path.GetFileName(path);
-        _addExcel.Enabled=false;
+        _excelRows = new();
+        Ui.Bind(_preview, _excelRows);
+        _addExcel.Enabled = false;
+        _excelStatus.Text = "Đang kiểm tra file…";
+        _excelRows = ImportThuocService.Preview(path);
+        Ui.Bind(_preview, _excelRows);
+        _excelStatus.Text = $"{Path.GetFileName(path)} · Hợp lệ {_excelRows.Count(x => x.HopLe)} · Lỗi {_excelRows.Count(x => !x.HopLe)}";
+        _addExcel.Enabled = _excelRows.Any(x => x.HopLe);
     }
 
     public ThemThuocPage()
