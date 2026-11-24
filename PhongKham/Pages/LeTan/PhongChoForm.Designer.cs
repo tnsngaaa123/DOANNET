@@ -224,6 +224,7 @@ public sealed partial class PhongChoForm
         this._paymentGrid_Column3.SortMode = DataGridViewColumnSortMode.NotSortable;
         this._paymentTab.Controls.Add(this._paymentGrid);
         this._paymentTab.Controls.Add(this._paymentBanner);
+        this._tabs.TabPages.Add(this._paymentTab);
         this._pickupTab.Text = "Chờ lấy thuốc";
         this._pickupTab.Padding = new Padding(16);
         this._pickupBanner.Dock = DockStyle.Top;
@@ -288,6 +289,7 @@ public sealed partial class PhongChoForm
         this._pickupGrid_Column3.SortMode = DataGridViewColumnSortMode.NotSortable;
         this._pickupTab.Controls.Add(this._pickupGrid);
         this._pickupTab.Controls.Add(this._pickupBanner);
+        this._tabs.TabPages.Add(this._pickupTab);
         Controls.Add(this._tabs);
         Text = "Phòng chờ";
         Name = "PhongChoForm";

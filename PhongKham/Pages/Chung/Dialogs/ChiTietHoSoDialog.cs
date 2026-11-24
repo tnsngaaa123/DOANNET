@@ -31,7 +31,7 @@ public sealed partial class ChiTietHoSoDialog : BaseDialog
         _profileValue6.Text = x.DiaChi;
         _profileValue7.Text = x.TienSuBenh;
         _profileValue8.Text = x.DiUng;
-        _layout6_LichSuKhamPanel.Visible=false;
+        _layout6_LichSuKhamPanel.LoadPatient(patient);
     }
     private void OkButton_Click(object? sender, EventArgs e)
     {
