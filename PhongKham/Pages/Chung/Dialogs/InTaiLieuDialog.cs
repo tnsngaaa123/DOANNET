@@ -27,8 +27,8 @@ public sealed partial class InTaiLieuDialog : BaseForm
                 throw new NghiepVuException("Windows chưa có máy in hợp lệ để xem trước. Hãy cài máy in rồi thử lại.");
         }
         _documentList.Items.AddRange(documents.Select(x => (object)(x is PhongKhamPrintDocument p ? p.Mau.TieuDe : x.DocumentName)).ToArray());
-
-        _documentList.SelectedIndex = 0;
+        if (documents.Length > 1) _documentList.Items.Add("CẢ HÓA ĐƠN VÀ ĐƠN THUỐC");
+        _documentList.SelectedIndex = documents.Length > 1 ? documents.Length : 0;
         _print.Text = "IN";
     }
 
@@ -66,9 +66,7 @@ public sealed partial class InTaiLieuDialog : BaseForm
             _print.Enabled = _close.Enabled = _documentList.Enabled = false;
             _printing = true;
             UseWaitCursor = true;
-            // Tránh bộ xem trước vẽ lại cùng PrintDocument trong lúc driver đang in.
             _preview.Document = null;
-            // Bấm IN là lưu PDF ngay, kể cả khi hủy hộp chọn máy in sau đó.
             DateTime printedOn = DateTime.Now;
             foreach (var document in selected.OfType<PhongKhamPrintDocument>())
                 PdfExporter.Export(document, printedOn);
@@ -141,4 +139,3 @@ public sealed partial class InTaiLieuDialog : BaseForm
         _previous.Enabled = _preview.StartPage > 0;
     }
 }
-    

@@ -13,7 +13,7 @@ public sealed partial class BaoCaoDialog : BaseDialog
     {
         InitializeComponent();
         if (DesignTimeSupport.IsDesignMode(this)) return;
-        Ui.Choices(_kind, (nameof(KyBaoCao.Ngay), "Theo ngày"));
+        Ui.Choices(_kind, (nameof(KyBaoCao.Ngay), "Theo ngày"), (nameof(KyBaoCao.Thang), "Theo tháng"), (nameof(KyBaoCao.Quy), "Theo quý"), (nameof(KyBaoCao.Nam), "Theo năm"));
         SetDate(DateTime.Today);
         _kind.SelectedIndexChanged += (_, _) => UpdateFields();
         UpdateFields();
@@ -61,4 +61,3 @@ public sealed partial class BaoCaoDialog : BaseDialog
 
     private void OkButton_Click(object? sender, EventArgs e) => SaveAndClose();
 }
-    
