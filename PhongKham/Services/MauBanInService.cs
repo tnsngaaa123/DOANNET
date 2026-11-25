@@ -115,7 +115,6 @@ public static class MauBanInService
         TyLeCot = new float[] { 15, 10, 18, 18, 17, 22 },
         Dong = data.CacNgay.Select(x => new[] { Formatters.Ngay(x.Ngay), x.SoLuot.ToString(), Formatters.Tien(x.TienKham), Formatters.Tien(x.TienThuoc), Formatters.Tien(x.GiamGia), Formatters.Tien(x.DoanhThu) }).ToList(),
         TongKet = new() { "TỔNG LƯỢT KHÁM: " + data.TongLuot, "Tiền khám: " + Formatters.Tien(data.TongTienKham), "Tiền thuốc: " + Formatters.Tien(data.TongTienThuoc), "Giảm giá: " + Formatters.Tien(data.TongGiamGia), "TỔNG DOANH THU: " + Formatters.Tien(data.TongDoanhThu) },
-        GhiChu = "Lượt khám tính theo ngày khám; doanh thu tính theo thời điểm thanh toán thực tế, sau giảm giá. Lượt chưa thanh toán không được cộng doanh thu.",
         ChuKyTrai = "Người kiểm tra", ChuKyPhai = "Người lập báo cáo", TenNguoiLap = data.NguoiLap
     };
 
