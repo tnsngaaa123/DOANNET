@@ -185,7 +185,7 @@ public sealed partial class SuaThongTinThuocPage
         this._group.Margin = new Padding(3, 6, 3, 8);
         this._layout2_form.Controls.Add(this._group, 1, 3);
         this._layout2_form.RowCount = 4;
-        this._layout7_FieldLabel.Text = "Đơn vị tính *";
+        this._layout7_FieldLabel.Text = "ĐVT";
         this._layout7_FieldLabel.AutoSize = true;
         this._layout7_FieldLabel.Margin = new Padding(4, 10, 8, 4);
         this._layout2_form.RowStyles.Add(new RowStyle(SizeType.AutoSize));

@@ -334,7 +334,7 @@ public sealed partial class ThemThuocPage
         this._group.Margin = new Padding(3, 6, 3, 8);
         this._layout9_form.Controls.Add(this._group, 1, 4);
         this._layout9_form.RowCount = 5;
-        this._layout15_FieldLabel.Text = "Đơn vị tính *";
+        this._layout15_FieldLabel.Text = "ĐVT";
         this._layout15_FieldLabel.AutoSize = true;
         this._layout15_FieldLabel.Margin = new Padding(4, 10, 8, 4);
         this._layout9_form.RowStyles.Add(new RowStyle(SizeType.AutoSize));

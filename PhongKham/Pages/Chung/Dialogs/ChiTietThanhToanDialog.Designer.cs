@@ -189,6 +189,7 @@ public sealed partial class ChiTietThanhToanDialog
         this.OkButton.Text = "Đóng";
         this.CancelAction.Visible = false;
         this._tabs.TabPages.Add(this._invoice);
+        this._tabs.TabPages.Add(this._history);
         this.Content.Controls.Add(this._tabs);
         this._historyGrid.ReadOnly = true;
         this._historyGrid.AllowUserToAddRows = false;
