@@ -33,12 +33,10 @@ public static class PdfExporter
         }
         finally
         {
-            // Lưu PDF không được biến máy in giấy của người dùng thành máy in PDF.
             document.PrinterSettings = originalPrinter;
             document.DefaultPageSettings = originalPage;
             document.PrintController = originalController;
         }
-        // The Windows spooler can finish writing just after Print returns.
         for (int attempt = 0; attempt < 50; attempt++)
         {
             try

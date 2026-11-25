@@ -1,8 +1,6 @@
 using System.Drawing.Printing;
 
 namespace PhongKham.Printing;
-
-// Ghép các trang để lựa chọn "Cả hóa đơn và đơn thuốc" cũng xem được cả hai.
 public sealed class TapTaiLieuPrintDocument : PrintDocument
 {
     private readonly PhongKhamPrintDocument[] _parts;

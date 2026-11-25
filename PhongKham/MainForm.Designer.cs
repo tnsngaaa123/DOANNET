@@ -78,7 +78,8 @@ public sealed partial class MainForm
         this._layout3_brand.Dock = DockStyle.Top;
         this._layout3_brand.Height = 92;
         this._layout3_brand.Padding = new Padding(16, 18, 0, 0);
-        this._layout3_brand.ForeColor = Color.White;
+        this._layout3_brand.ForeColor = Color.FromArgb(22, 163, 74);
+        this._layout3_brand.UseMnemonic = false;
         this._layout3_brand.Font = new Font("Segoe UI", 12, FontStyle.Bold);
         this._layout2_side.Controls.Add(this._sidebar);
         this._layout2_side.Controls.Add(this._layout3_brand);

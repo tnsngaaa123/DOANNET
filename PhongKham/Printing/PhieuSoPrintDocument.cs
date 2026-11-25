@@ -75,7 +75,6 @@ public sealed class PhieuSoPrintDocument : PrintDocument
     protected override void OnEndPrint(PrintEventArgs e)
     {
         base.OnEndPrint(e);
-        // Xem trước/cancel không được coi là đã in. Đây là ghi nhận lệnh in hoàn tất, không cảm biến giấy.
         if (!_preview && !e.Cancel && _index == _tickets.Count && _index > 0)
             Ui.Run(() => InAnService.MarkTicketsPrinted(_tickets.Select(t => t.LuotKham.Phieu.Id)));
     }
