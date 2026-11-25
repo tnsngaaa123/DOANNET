@@ -43,6 +43,7 @@ public sealed partial class KeDonPage : BasePage
         var x = Input();
         if (x.SoLuong < 1 || x.SoNgay < 1 || string.IsNullOrWhiteSpace(x.LieuDung))
             throw new NghiepVuException("Nhập số lượng, số ngày và liều dùng.");
+        KeDonService.KiemTraSoLuongTheoLieu(x);
         if (x.SoLuong > ThuocService.KhaDung(x.ThuocId, _id))
             throw new NghiepVuException("Không đủ thuốc còn hạn cho số lượng này.");
         _rows.RemoveAll(r => r.ThuocId == x.ThuocId);

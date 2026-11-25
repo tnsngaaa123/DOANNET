@@ -28,7 +28,7 @@ public sealed partial class PhieuKhamPage : BasePage
     {
         if (!_completed)
         {
-            if (!AppDialogs.Confirm("Hoàn tất phiếu khám và mở bản in hóa đơn, đơn thuốc cho bệnh nhân?"))
+            if (!AppDialogs.Confirm("Hoàn tất khám bệnh nhân này?"))
                 return;
             _saveTimer?.Stop();
             KhamBenhService.Save(_id, _symptoms.Text, _diagnosis.Text, _result.Text, _advice.Text, true);
