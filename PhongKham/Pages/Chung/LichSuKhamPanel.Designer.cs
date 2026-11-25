@@ -8,21 +8,21 @@ namespace PhongKham.Pages.Chung;
 public sealed partial class LichSuKhamPanel
 {
     private System.ComponentModel.IContainer components;
-    private PhongKham.Controls.AppGrid _visits;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout1_Column;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout2_Column;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout3_Column;
+    private AppGrid _visits;
+    private DataGridViewTextBoxColumn _layout1_Column;
+    private DataGridViewTextBoxColumn _layout2_Column;
+    private DataGridViewTextBoxColumn _layout3_Column;
     private DataGridViewButtonColumn _viewVisit;
-    private PhongKham.Controls.AppGrid _drugs;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout4_Column;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout5_Column;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout6_Column;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout7_Column;
-    private System.Windows.Forms.DataGridViewTextBoxColumn _layout8_Column;
-    private System.Windows.Forms.TextBox _info;
-    private System.Windows.Forms.Panel _layout9_detail;
-    private System.Windows.Forms.Panel _layout10_host;
-    private System.Windows.Forms.TableLayoutPanel _layout11_Split;
+    private AppGrid _drugs;
+    private DataGridViewTextBoxColumn _layout4_Column;
+    private DataGridViewTextBoxColumn _layout5_Column;
+    private DataGridViewTextBoxColumn _layout6_Column;
+    private DataGridViewTextBoxColumn _layout7_Column;
+    private DataGridViewTextBoxColumn _layout8_Column;
+    private TextBox _info;
+    private Panel _layout9_detail;
+    private Panel _layout10_host;
+    private TableLayoutPanel _layout11_Split;
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -30,174 +30,188 @@ public sealed partial class LichSuKhamPanel
         base.Dispose(disposing);
     }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
     private void InitializeComponent()
     {
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-        _visits = new PhongKham.Controls.AppGrid();
-        _viewVisit = new System.Windows.Forms.DataGridViewButtonColumn();
-        _drugs = new PhongKham.Controls.AppGrid();
-        _info = new System.Windows.Forms.TextBox();
-        _layout9_detail = new System.Windows.Forms.Panel();
-        _layout10_host = new System.Windows.Forms.Panel();
-        _layout11_Split = new System.Windows.Forms.TableLayoutPanel();
-        ((System.ComponentModel.ISupportInitialize)_visits).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)_drugs).BeginInit();
-        _layout9_detail.SuspendLayout();
-        _layout10_host.SuspendLayout();
-        _layout11_Split.SuspendLayout();
+        DataGridViewCellStyle _visits_ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle();
+        DataGridViewCellStyle _visits_DefaultCellStyle = new DataGridViewCellStyle();
+        DataGridViewCellStyle _visits_AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle();
+        DataGridViewCellStyle _drugs_ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle();
+        DataGridViewCellStyle _drugs_DefaultCellStyle = new DataGridViewCellStyle();
+        DataGridViewCellStyle _drugs_AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle();
+        this.components = new System.ComponentModel.Container();
+        this._visits = new AppGrid();
+        this._layout1_Column = new DataGridViewTextBoxColumn();
+        this._layout2_Column = new DataGridViewTextBoxColumn();
+        this._layout3_Column = new DataGridViewTextBoxColumn();
+        this._viewVisit = new DataGridViewButtonColumn();
+        this._drugs = new AppGrid();
+        this._layout4_Column = new DataGridViewTextBoxColumn();
+        this._layout5_Column = new DataGridViewTextBoxColumn();
+        this._layout6_Column = new DataGridViewTextBoxColumn();
+        this._layout7_Column = new DataGridViewTextBoxColumn();
+        this._layout8_Column = new DataGridViewTextBoxColumn();
+        this._info = new TextBox();
+        this._layout9_detail = new Panel();
+        this._layout10_host = new Panel();
+        this._layout11_Split = new TableLayoutPanel();
+        this._visits.Name = "_visits";
+        this._drugs.Name = "_drugs";
+        this._info.Name = "_info";
+        this._layout9_detail.Name = "_layout9_detail";
+        this._layout10_host.Name = "_layout10_host";
+        this._layout11_Split.Name = "_layout11_Split";
+        ((System.ComponentModel.ISupportInitialize)this._visits).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)this._drugs).BeginInit();
+        this._layout9_detail.SuspendLayout();
+        this._layout10_host.SuspendLayout();
+        this._layout11_Split.SuspendLayout();
         SuspendLayout();
-        // 
-        // _visits
-        // 
-        _visits.AllowUserToAddRows = false;
-        _visits.AllowUserToDeleteRows = false;
-        dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)248)), ((int)((byte)250)), ((int)((byte)252)));
-        _visits.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-        _visits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-        _visits.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-        _visits.BackgroundColor = System.Drawing.Color.White;
-        _visits.BorderStyle = System.Windows.Forms.BorderStyle.None;
-        dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)((byte)226)), ((int)((byte)232)), ((int)((byte)240)));
-        dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-        _visits.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-        _visits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        _visits.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { _viewVisit });
-        dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-        dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-        dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-        dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(6);
-        dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)((byte)204)), ((int)((byte)251)), ((int)((byte)241)));
-        dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-        _visits.DefaultCellStyle = dataGridViewCellStyle3;
-        _visits.Dock = System.Windows.Forms.DockStyle.Fill;
-        _visits.EnableHeadersVisualStyles = false;
-        _visits.Location = new System.Drawing.Point(3, 3);
-        _visits.MultiSelect = false;
-        _visits.Name = "_visits";
-        _visits.ReadOnly = true;
-        _visits.RowHeadersVisible = false;
-        _visits.RowTemplate.Height = 38;
-        _visits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-        _visits.Size = new System.Drawing.Size(66, 14);
-        _visits.TabIndex = 0;
-        _visits.CellContentClick += _viewVisit_Click;
-        // 
-        // _viewVisit
-        // 
-        _viewVisit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        _viewVisit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        _viewVisit.HeaderText = "";
-        _viewVisit.MinimumWidth = 55;
-        _viewVisit.Name = "_viewVisit";
-        _viewVisit.ReadOnly = true;
-        _viewVisit.Text = "👁";
-        _viewVisit.ToolTipText = "Xem chi tiết lần khám và đơn thuốc";
-        _viewVisit.UseColumnTextForButtonValue = true;
-        _viewVisit.Width = 55;
-        // 
-        // _drugs
-        // 
-        _drugs.AllowUserToAddRows = false;
-        _drugs.AllowUserToDeleteRows = false;
-        dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)((byte)248)), ((int)((byte)250)), ((int)((byte)252)));
-        _drugs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-        _drugs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-        _drugs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-        _drugs.BackgroundColor = System.Drawing.Color.White;
-        _drugs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-        dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)((byte)226)), ((int)((byte)232)), ((int)((byte)240)));
-        dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-        _drugs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-        _drugs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-        dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
-        dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-        dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(6);
-        dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)((byte)204)), ((int)((byte)251)), ((int)((byte)241)));
-        dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)((byte)15)), ((int)((byte)23)), ((int)((byte)42)));
-        dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-        _drugs.DefaultCellStyle = dataGridViewCellStyle6;
-        _drugs.Dock = System.Windows.Forms.DockStyle.Fill;
-        _drugs.EnableHeadersVisualStyles = false;
-        _drugs.Location = new System.Drawing.Point(0, 260);
-        _drugs.MultiSelect = false;
-        _drugs.Name = "_drugs";
-        _drugs.ReadOnly = true;
-        _drugs.RowHeadersVisible = false;
-        _drugs.RowTemplate.Height = 38;
-        _drugs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-        _drugs.Size = new System.Drawing.Size(124, 0);
-        _drugs.TabIndex = 0;
-        // 
-        // _info
-        // 
-        _info.Dock = System.Windows.Forms.DockStyle.Top;
-        _info.Location = new System.Drawing.Point(0, 0);
-        _info.Multiline = true;
-        _info.Name = "_info";
-        _info.ReadOnly = true;
-        _info.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-        _info.Size = new System.Drawing.Size(124, 260);
-        _info.TabIndex = 1;
-        // 
-        // _layout9_detail
-        // 
-        _layout9_detail.Controls.Add(_drugs);
-        _layout9_detail.Controls.Add(_info);
-        _layout9_detail.Dock = System.Windows.Forms.DockStyle.Fill;
-        _layout9_detail.Location = new System.Drawing.Point(75, 3);
-        _layout9_detail.Name = "_layout9_detail";
-        _layout9_detail.Size = new System.Drawing.Size(124, 14);
-        _layout9_detail.TabIndex = 1;
-        // 
-        // _layout10_host
-        // 
-        _layout10_host.Controls.Add(_layout11_Split);
-        _layout10_host.Dock = System.Windows.Forms.DockStyle.Fill;
-        _layout10_host.Location = new System.Drawing.Point(0, 0);
-        _layout10_host.Name = "_layout10_host";
-        _layout10_host.Size = new System.Drawing.Size(202, 0);
-        _layout10_host.TabIndex = 0;
-        // 
-        // _layout11_Split
-        // 
-        _layout11_Split.ColumnCount = 2;
-        _layout11_Split.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36F));
-        _layout11_Split.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64F));
-        _layout11_Split.Controls.Add(_visits, 0, 0);
-        _layout11_Split.Controls.Add(_layout9_detail, 1, 0);
-        _layout11_Split.Dock = System.Windows.Forms.DockStyle.Fill;
-        _layout11_Split.Location = new System.Drawing.Point(0, 0);
-        _layout11_Split.Name = "_layout11_Split";
-        _layout11_Split.RowCount = 1;
-        _layout11_Split.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-        _layout11_Split.Size = new System.Drawing.Size(202, 0);
-        _layout11_Split.TabIndex = 0;
-        // 
-        // LichSuKhamPanel
-        // 
-        Controls.Add(_layout10_host);
-        Size = new System.Drawing.Size(202, 0);
-        ((System.ComponentModel.ISupportInitialize)_visits).EndInit();
-        ((System.ComponentModel.ISupportInitialize)_drugs).EndInit();
-        _layout9_detail.ResumeLayout(false);
-        _layout9_detail.PerformLayout();
-        _layout10_host.ResumeLayout(false);
-        _layout11_Split.ResumeLayout(false);
+        this._visits.ReadOnly = true;
+        this._visits.AllowUserToAddRows = false;
+        this._visits.AllowUserToDeleteRows = false;
+        this._visits.AutoGenerateColumns = false;
+        this._visits.MultiSelect = false;
+        this._visits.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        this._visits.RowHeadersVisible = false;
+        this._visits.Dock = DockStyle.Fill;
+        this._visits.BackgroundColor = Color.White;
+        this._visits.BorderStyle = BorderStyle.None;
+        this._visits.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        this._visits.EnableHeadersVisualStyles = false;
+        this._visits.ColumnHeadersHeight = 40;
+        _visits_ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(226, 232, 240);
+        _visits_ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(15, 23, 42);
+        this._visits.ColumnHeadersDefaultCellStyle = _visits_ColumnHeadersDefaultCellStyle;
+        _visits_DefaultCellStyle.Padding = new Padding(6);
+        _visits_DefaultCellStyle.SelectionBackColor = Color.FromArgb(204, 251, 241);
+        _visits_DefaultCellStyle.SelectionForeColor = Color.FromArgb(15, 23, 42);
+        this._visits.DefaultCellStyle = _visits_DefaultCellStyle;
+        this._visits.RowTemplate.Height = 38;
+        _visits_AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+        this._visits.AlternatingRowsDefaultCellStyle = _visits_AlternatingRowsDefaultCellStyle;
+        this._layout1_Column.DataPropertyName = "NgayKham";
+        this._layout1_Column.Name = "_layout1_Column";
+        this._layout1_Column.HeaderText = "Ngày khám";
+        this._layout1_Column.MinimumWidth = 65;
+        this._layout1_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout2_Column.DataPropertyName = "TenBacSi";
+        this._layout2_Column.Name = "_layout2_Column";
+        this._layout2_Column.HeaderText = "Bác sĩ";
+        this._layout2_Column.MinimumWidth = 65;
+        this._layout2_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout3_Column.DataPropertyName = "ChanDoan";
+        this._layout3_Column.Name = "_layout3_Column";
+        this._layout3_Column.HeaderText = "Chẩn đoán";
+        this._layout3_Column.MinimumWidth = 65;
+        this._layout3_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._viewVisit.Name = "_viewVisit";
+        this._viewVisit.HeaderText = "";
+        this._viewVisit.Text = "👁";
+        this._viewVisit.UseColumnTextForButtonValue = true;
+        this._viewVisit.Width = 55;
+        this._viewVisit.MinimumWidth = 55;
+        this._viewVisit.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        this._viewVisit.FlatStyle = FlatStyle.Flat;
+        this._viewVisit.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._viewVisit.HeaderCell.ToolTipText = "Xem chi tiết lần khám và đơn thuốc";
+        this._visits.CellContentClick += _viewVisit_Click;
+        this._drugs.ReadOnly = true;
+        this._drugs.AllowUserToAddRows = false;
+        this._drugs.AllowUserToDeleteRows = false;
+        this._drugs.AutoGenerateColumns = false;
+        this._drugs.MultiSelect = false;
+        this._drugs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        this._drugs.RowHeadersVisible = false;
+        this._drugs.Dock = DockStyle.Fill;
+        this._drugs.BackgroundColor = Color.White;
+        this._drugs.BorderStyle = BorderStyle.None;
+        this._drugs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        this._drugs.EnableHeadersVisualStyles = false;
+        this._drugs.ColumnHeadersHeight = 40;
+        _drugs_ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(226, 232, 240);
+        _drugs_ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(15, 23, 42);
+        this._drugs.ColumnHeadersDefaultCellStyle = _drugs_ColumnHeadersDefaultCellStyle;
+        _drugs_DefaultCellStyle.Padding = new Padding(6);
+        _drugs_DefaultCellStyle.SelectionBackColor = Color.FromArgb(204, 251, 241);
+        _drugs_DefaultCellStyle.SelectionForeColor = Color.FromArgb(15, 23, 42);
+        this._drugs.DefaultCellStyle = _drugs_DefaultCellStyle;
+        this._drugs.RowTemplate.Height = 38;
+        _drugs_AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+        this._drugs.AlternatingRowsDefaultCellStyle = _drugs_AlternatingRowsDefaultCellStyle;
+        this._layout4_Column.DataPropertyName = "TenThuoc";
+        this._layout4_Column.Name = "_layout4_Column";
+        this._layout4_Column.HeaderText = "Thuốc";
+        this._layout4_Column.MinimumWidth = 65;
+        this._layout4_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout5_Column.DataPropertyName = "SoLuong";
+        this._layout5_Column.Name = "_layout5_Column";
+        this._layout5_Column.HeaderText = "SL";
+        this._layout5_Column.MinimumWidth = 65;
+        this._layout5_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout6_Column.DataPropertyName = "DonViTinh";
+        this._layout6_Column.Name = "_layout6_Column";
+        this._layout6_Column.HeaderText = "ĐVT";
+        this._layout6_Column.MinimumWidth = 65;
+        this._layout6_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout7_Column.DataPropertyName = "LieuDung";
+        this._layout7_Column.Name = "_layout7_Column";
+        this._layout7_Column.HeaderText = "Liều dùng";
+        this._layout7_Column.MinimumWidth = 65;
+        this._layout7_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._layout8_Column.DataPropertyName = "DonGia";
+        this._layout8_Column.Name = "_layout8_Column";
+        this._layout8_Column.HeaderText = "Đơn giá";
+        this._layout8_Column.MinimumWidth = 65;
+        this._layout8_Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        this._info.Multiline = true;
+        this._info.Height = 75;
+        this._info.ScrollBars = ScrollBars.Vertical;
+        this.Dock = DockStyle.Fill;
+        this._info.ReadOnly = true;
+        this._info.Dock = DockStyle.Top;
+        this._info.Height = 260;
+        this._layout9_detail.Dock = DockStyle.Fill;
+        this._layout9_detail.Controls.Add(this._drugs);
+        this._layout9_detail.Controls.Add(this._info);
+        this._layout10_host.Dock = DockStyle.Fill;
+        Controls.Add(this._layout10_host);
+        this._layout11_Split.Dock = DockStyle.Fill;
+        this._layout11_Split.ColumnCount = 2;
+        this._layout11_Split.RowCount = 1;
+        this._layout11_Split.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36));
+        this._layout11_Split.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64));
+        this._visits.Dock = DockStyle.Fill;
+        this._layout9_detail.Dock = DockStyle.Fill;
+        this._layout11_Split.Controls.Add(this._visits, 0, 0);
+        this._layout11_Split.Controls.Add(this._layout9_detail, 1, 0);
+        this._layout10_host.Controls.Add(this._layout11_Split);
+        this.Name = "LichSuKhamPanel";
+        this.Size = new Size(1040, 600);
+        this._visits.Columns.AddRange(new DataGridViewColumn[] { this._layout1_Column, this._layout2_Column, this._layout3_Column, this._viewVisit });
+        this._drugs.Columns.AddRange(new DataGridViewColumn[] { this._layout4_Column, this._layout5_Column, this._layout6_Column, this._layout7_Column, this._layout8_Column });
+        this._visits.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        this._visits.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        this._visits.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        this._visits.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        this._visits.RowTemplate.MinimumHeight = 38;
+        this._drugs.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        this._drugs.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        this._drugs.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        this._drugs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        this._drugs.RowTemplate.MinimumHeight = 38;
+        this._layout4_Column.MinimumWidth = 130;
+        this._layout4_Column.FillWeight = 140;
+        this._layout7_Column.MinimumWidth = 220;
+        this._layout7_Column.FillWeight = 210;
+        ((System.ComponentModel.ISupportInitialize)this._visits).EndInit();
+        ((System.ComponentModel.ISupportInitialize)this._drugs).EndInit();
+        this._layout11_Split.ResumeLayout(false);
+        this._layout11_Split.PerformLayout();
+        this._layout10_host.ResumeLayout(false);
+        this._layout10_host.PerformLayout();
+        this._layout9_detail.ResumeLayout(false);
+        this._layout9_detail.PerformLayout();
         ResumeLayout(false);
+        PerformLayout();
     }
 }
